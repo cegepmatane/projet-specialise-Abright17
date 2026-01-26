@@ -1,0 +1,113 @@
+{
+  "project": "PlanMyTrip",
+  "research_vagues": [
+    {
+      "vague": 1,
+      "query": "web cartography solution",
+      "sites": [
+        {
+          "name": "ArcGIS Online",
+          "url": "https://www.arcgis.com",
+          "definition": "Plateforme web SIG pour créer des cartes interactives et manipuler des données spatiales. Orientée pro/entreprise."
+        },
+        {
+          "name": "Mapcreator",
+          "url": "https://mapcreator.io",
+          "definition": "Outil en ligne pour créer des cartes annotées facilement, plus graphique que technique."
+        },
+        {
+          "name": "QGIS",
+          "url": "https://qgis.org",
+          "definition": "Logiciel SIG open-source pour créer et manipuler des cartes. Permet export web."
+        }
+      ]
+    },
+    {
+      "vague": 2,
+      "query": "web mapping route planning",
+      "sites": [
+        {
+          "name": "MyRouteOnline",
+          "url": "https://www.myrouteonline.com/my-route/route-planner",
+          "definition": "Outil web pour planifier des itinéraires multiples. Utilise Google Maps API en interne."
+        },
+        {
+          "name": "Tarot Analytics",
+          "url": "https://www.tarotanalytics.com/route-planning/book-a-demo",
+          "definition": "Logiciel commercial pour la logistique et optimisation des trajets."
+        },
+        {
+          "name": "TerraLens SDK",
+          "url": "https://www.kongsberggeospatial.com",
+          "definition": "SDK pour créer des cartes interactives 2D/3D en temps réel, orienté applications professionnelles complexes."
+        }
+      ]
+    },
+    {
+      "vague": 3,
+      "query": "Google Maps JavaScript API",
+      "sites": [
+        {
+          "name": "Google Maps Data Layer / GeoJSON",
+          "url": "https://developers.google.com/maps/documentation/javascript/datalayer",
+          "definition": "Permet d’afficher dynamiquement les données d’un voyage sur la carte."
+        },
+        {
+          "name": "Google Maps API Key",
+          "url": "https://developers.google.com/maps/documentation/javascript/get-api-key",
+          "definition": "Une clé API est obligatoire pour utiliser Google Maps JavaScript API ou Directions API. Sans clé, la carte ne s’affiche pas ou certaines fonctions ne fonctionnent pas."
+        },
+        {
+          "name": "Data Layer",
+          "url": "https://developers.google.com/maps/documentation/javascript/datalayer",
+          "definition": "Couche spéciale dans Google Maps pour ajouter des données GeoJSON sur la carte. Permet de gérer points, lignes et polygones dynamiquement."
+        },
+        {
+          "name": "addGeoJson()",
+          "url": "https://developers.google.com/maps/documentation/javascript/datalayer",
+          "definition": "Fonction qui importe des données GeoJSON dans la carte, utile pour afficher les activités, itinéraires ou zones d’intérêt."
+        },
+        {
+          "name": "setStyle()",
+          "url": "https://developers.google.com/maps/documentation/javascript/datalayer",
+          "definition": "Fonction pour modifier le style des objets GeoJSON : couleur, opacité, largeur de ligne."
+        },
+        {
+          "name": "Event listeners",
+          "url": "https://developers.google.com/maps/documentation/javascript/datalayer",
+          "definition": "Permet d’ajouter des interactions sur les objets GeoJSON (clic, survol…)."
+        },
+        {
+          "name": "Feature / Geometry",
+          "url": "https://developers.google.com/maps/documentation/javascript/datalayer",
+          "definition": "Un élément GeoJSON : peut être un point (marker), une ligne (itinéraire), ou un polygone (zone)."
+        },
+        {
+          "name": "Quota",
+          "url": "https://developers.google.com/maps/documentation/javascript/get-api-key",
+          "definition": "Limite d’utilisation d’une API Key (nombre de requêtes par jour)."
+        },
+        {
+          "name": "Referrer / Domain restriction",
+          "url": "https://developers.google.com/maps/documentation/javascript/get-api-key",
+          "definition": "Permet de restreindre l’utilisation de la clé API à votre site web pour la sécuriser."
+        },
+        {
+          "name": "Billing account / Facturation",
+          "url": "https://developers.google.com/maps/documentation/javascript/get-api-key",
+          "definition": "Compte Google nécessaire pour activer certaines fonctionnalités et dépasser le quota gratuit."
+        },
+        {
+          "name": "Enable API",
+          "url": "https://developers.google.com/maps/documentation/javascript/get-api-key",
+          "definition": "Option pour activer certaines API (Maps, Directions, Places) sur votre projet Google Cloud."
+        },
+        {
+          "name": "Callback function",
+          "url": "https://developers.google.com/maps/documentation/javascript/get-api-key",
+          "definition": "Fonction JavaScript qui s’exécute une fois que la carte est chargée ou que l’API a répondu."
+        }
+      ]
+    }
+  ]
+}
