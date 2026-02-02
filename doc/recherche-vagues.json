@@ -1,0 +1,170 @@
+{
+  "waves": [
+    {
+      "searches": [
+        "web cartography solution",
+        "distance between two GPS points"
+      ],
+      "urls": [
+        "https://www.arcgis.com",
+        "https://mapcreator.io",
+        "https://qgis.org",
+        "https://www.movable-type.co.uk/scripts/latlong.html",
+        "https://www.omnicalculator.com/other/latitude-longitude-distance?utm_source=chatgpt.com",
+        "https://medium.com/codex/how-to-measure-distances-between-two-coordinates-a-data-analysts-guide-51978f7356c5?utm_source=chatgpt.com"
+      ],
+      "keywords": [
+        {
+          "term": "Earth radius",
+          "type": "tool",
+          "description": "Est utilisée comme constante dans les calculs de distances ."
+        },
+        {
+          "term": "React",
+          "type": "tech",
+          "description": "bibliothèque JavaScript open-source utilisée pour construire"
+        },
+        {
+          "term": "Mapbox",
+          "type": "tech",
+          "description": "lateforme pour développeurs offrant des outils pour créer des cartes personnalisées."
+        },
+        {
+          "term": "Haversine formula",
+          "type": "tech",
+          "description": "Haversine formula ( Formule de Haversine)Formule utilisée pour calculer la distance entre deux points de la terres"
+        },
+        {
+          "term": "Feature Layer",
+          "type": "tool",
+          "description": "couche cartographique qui contient des objets géographiques vectoriels associés à des données"
+        },
+        {
+          "term": "Interactive Maps",
+          "type": "tool",
+          "description": "carte affichée sur un site web ou une application qui permet à l’utilisateur d’interagir avec elle, au lieu d’être une image"
+        },
+        {
+          "term": "Latitude",
+          "type": "tool",
+          "description": "est l’une coordonnée géographique qui indique la position  d'un point sur Terre,"
+        },
+        {
+          "term": "GIS",
+          "type": "tool",
+          "description": "Système d’information géographique pour stocker et analyser des données spatiales."
+        },
+        {
+          "term": "routing algorithms",
+          "type": "tool",
+          "description": "uneméthode mathématique ou informatique qui calcule le meilleur chemin entre deux points ou plus sur une carte"
+        }
+      ]
+    },
+    {
+      "searches": [
+        "React interactive map travel planner“",
+        "Mapbox API",
+        "Leaflet"
+      ],
+      "urls": [
+        "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://medium.com/%40madhawaawishka/how-to-add-an-interactive-map-with-react-leaflet-and-leaflet-routing-machine-787113e730b3&ved=2ahUKEwj53M2N37mSAxX2w_ACHRiQBpUQFnoECCIQAQ&usg=AOvVaw2-FsdH5I72TUd66kPl9tN_",
+        "ttps://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.geeksforgeeks.org/reactjs/developing-a-budget-travel-planner-using-react-and-interactive-maps-mapbox/&ved=2ahUKEwj53M2N37mSAxX2w_ACHRiQBpUQFnoECBwQAQ&usg=AOvVaw3PE11FI-XuKMAR-7_KkCKO",
+        "ttps://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.geeksforgeeks.org/reactjs/developing-a-budget-travel-planner-using-react-and-interactive-maps-mapbox/&ved=2ahUKEwj53M2N37mSAxX2w_ACHRiQBpUQFnoECBwQAQ&usg=AOvVaw3PE11FI-XuKMAR-7_KkCKO",
+        "https://developers.google.com/maps/documentation/javascript/datalayer",
+        "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://leafletjs.com/&ved=2ahUKEwjKkpaS-7mSAxWQmYkEHf_VBjwQFnoECCwQAQ&usg=AOvVaw1keCKYj9IpMCmxLWhUpXWv"
+      ],
+      "keywords": [
+        {
+          "term": "Mapbox API",
+          "type": "tech",
+          "description": "Une interface permettant aux développeurs d'ajouter des couches spéciales et des fonctionnalités personnalisées."
+        },
+        {
+          "term": "Leaflet",
+          "type": "tech",
+          "description": "Une bibliothèque JavaScript open-source utilisée pour intégrer des cartes interactives"
+        },
+        {
+          "term": "Tilesets",
+          "type": "tool",
+          "description": "Une méthode  qui divise une carte en petites images carrées"
+        },
+        {
+          "term": "React.js",
+          "type": "tech",
+          "description": "bibliothèque JavaScript utilisée pour créer des composants d'interface utilisateur"
+        },
+        {
+          "term": "Hooks React",
+          "type": "tool",
+          "description": "https://www.w3schools.com/react/react_hooks.asp Ex: useState"
+        },
+        {
+          "term": "Google Maps API",
+          "type": "tech",
+          "description": "service de Google permettant d'intégrer leurs cartes célèbres dans des applications."
+        },
+        {
+          "term": "React Router",
+          "type": "tool",
+          "description": "ttps://www.w3schools.com/react/react_hooks.asp"
+        }
+      ]
+    },
+    {
+      "searches": [],
+      "urls": [
+        "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://github.com/mapbox/mapbox-gl-js&ved=2ahUKEwio1um067mSAxWZmYkEHScsF4sQFnoECEcQAQ&usg=AOvVaw23SSe6wvAYDmBOTHT-CW0B)",
+        "https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://en.wikipedia.org/wiki/Haversine_formula&ved=2ahUKEwiQxsuH7rmSAxXtmokEHWpUEroQFnoECBsQAQ&usg=AOvVaw1HT1mtRoZyd9Odl6dK5jfk"
+      ],
+      "keywords": [
+        {
+          "term": "map.addSource()",
+          "type": "tool",
+          "description": "Cette fonction permet d'ajouter une source de données comme un fichier JSON"
+        },
+        {
+          "term": "OpenStreetMap",
+          "type": "tech",
+          "description": "https://www.openstreetmap.org/"
+        },
+        {
+          "term": "map.addLayer()",
+          "type": "tool",
+          "description": "Utilisée pour définir le style visuel"
+        },
+        {
+          "term": "map.flyTo()",
+          "type": "tool",
+          "description": "Une fonction d'animation fluide qui déplace la caméra de la carte vers une nouvelle destination avec un effet de zoom"
+        },
+        {
+          "term": "map.getCanvas()",
+          "type": "tool",
+          "description": "ttps://gemini.google.com/app/d966bd8e1b734fe4#:~:text=Une%20fonction%20d%27animation%"
+        },
+        {
+          "term": "Sin",
+          "type": "tool",
+          "description": "trigonométrie utilisé dans la formule de haversine"
+        },
+        {
+          "term": "map.on():",
+          "type": "tool",
+          "description": "gérer les évènement utilisateur"
+        },
+        {
+          "term": "mapboxgl.Map()",
+          "type": "tool",
+          "description": "e fonction pour créer une map interactive"
+        }
+      ]
+    },
+    {
+      "searches": [],
+      "urls": [],
+      "keywords": []
+    }
+  ]
+}
