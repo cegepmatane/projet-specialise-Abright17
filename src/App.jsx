@@ -89,6 +89,22 @@ async function routeOSRM(a, b) {
 
   return { coords, distanceKm, durationMin };
 }
+setRoute(null);
+
+const flyKm = haversineKm(a, b);
+
+setStatus(`Calcul de l'itinéraire... (vol d'oiseau: ${flyKm.toFixed(1)} km)`);
+const r = await routeOSRM(a, b);
+
+if (!r) {
+  setStatus("Itinéraire introuvable (OSRM).");
+  return;
+}
+
+setRoute(r);
+setStatus(
+  `OK — route: ${r.distanceKm} km, ~${r.durationMin} min | vol d'oiseau: ${flyKm.toFixed(1)} km`
+);
 
 
 
