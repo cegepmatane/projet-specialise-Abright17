@@ -1,0 +1,21 @@
+{
+  "activities": [
+    {
+      "id": 1,
+      "name": "Cégep de Matane",
+      "category": "École",
+      "price": 0,
+      "lat": 48.84074746106847,
+      "lng": -67.49742427350874
+    },
+    {
+      "id": 2,
+      "name": "McDonald's Matane",
+      "category": "Restaurant",
+      "price": 12,
+      "lat": 48.85154105306837,
+      "lng": -67.53214480042968
+    }
+  ],
+
+}
