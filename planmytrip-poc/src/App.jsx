@@ -7,7 +7,7 @@ export default function App() {
       <h1>PlanMyTrip PoC</h1>
 
       <MapContainer
-        center={[48.8566, -67.5220]}  // Matane
+        center={[48.8566, -67.5220]}
         zoom={12}
         style={{ height: "80vh", width: "100%" }}
       >
