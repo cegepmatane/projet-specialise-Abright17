@@ -48,3 +48,14 @@ function findPlace(allPlaces, query) {
     label: found.name,
   };
 }
+{fromPos && (
+  <Marker position={[fromPos.lat, fromPos.lng]} icon={redIcon}>
+    <Popup><b>Départ</b><br />{fromPos.label}</Popup>
+  </Marker>
+)}
+
+{toPos && (
+  <Marker position={[toPos.lat, toPos.lng]}>
+    <Popup><b>Destination</b><br />{toPos.label}</Popup>
+  </Marker>
+)}
