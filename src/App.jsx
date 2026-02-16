@@ -1,5 +1,9 @@
 import { Marker, Popup } from "react-leaflet";
 
+import { Polyline, useMap } from "react-leaflet";
+import L from "leaflet";
+
+
 const [fromText, setFromText] = useState("Cégep de Matane");
 const [toText, setToText] = useState("Riôtel Matane");
 
