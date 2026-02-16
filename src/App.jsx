@@ -105,6 +105,15 @@ setRoute(r);
 setStatus(
   `OK — route: ${r.distanceKm} km, ~${r.durationMin} min | vol d'oiseau: ${flyKm.toFixed(1)} km`
 );
+{route?.coords?.length > 0 && (
+  <>
+    <Polyline
+      positions={route.coords}
+      pathOptions={{ color: "blue", weight: 5, opacity: 0.8 }}
+    />
+    <FitBounds coords={route.coords} />
+  </>
+)}
 
 
 
