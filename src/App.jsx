@@ -31,3 +31,20 @@ const allPlaces = useMemo(
 </div>
 
 {status && <p style={{ marginTop: 0 }}>{status}</p>}
+function findPlace(allPlaces, query) {
+  const q = query.trim().toLowerCase();
+  if (!q) return null;
+
+  let found = allPlaces.find((p) => p.name.trim().toLowerCase() === q);
+  if (!found) {
+    found = allPlaces.find((p) => p.name.trim().toLowerCase().includes(q));
+  }
+  if (!found) return null;
+
+  return {
+    ...found,
+    lat: Number(found.lat),
+    lng: Number(found.lng),
+    label: found.name,
+  };
+}
