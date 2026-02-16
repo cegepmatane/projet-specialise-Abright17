@@ -25,5 +25,22 @@
       "lng": -67.5293
     }
   ],
-
+  "hotels": [
+    {
+      "id": 1,
+      "name": "Riôtel Matane",
+      "category": "Hôtel",
+      "price": 150,
+      "lat": 48.85336499845497,
+      "lng": -67.52561361873343
+    },
+    {
+      "id": 2,
+      "name": "Tim Hortons Matane",
+      "category": "Restaurant",
+      "price": 10,
+      "lat": 48.8509,
+      "lng": -67.5284
+    }
+  ]
 }
