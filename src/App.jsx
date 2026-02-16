@@ -52,6 +52,46 @@ function findPlace(allPlaces, query) {
     label: found.name,
   };
 }
+
+function toRad(deg) {
+  return (deg * Math.PI) / 180;
+}
+
+function haversineKm(a, b) {
+  const R = 6371;
+  const dLat = toRad(b.lat - a.lat);
+  const dLng = toRad(b.lng - a.lng);
+  const lat1 = toRad(a.lat);
+  const lat2 = toRad(b.lat);
+
+  const h =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+
+async function routeOSRM(a, b) {
+  const url = `https://router.project-osrm.org/route/v1/driving/${a.lng},${a.lat};${b.lng},${b.lat}?overview=full&geometries=geojson`;
+
+  const res = await fetch(url);
+  const json = await res.json();
+
+  if (json?.code !== "Ok" || !json?.routes?.length) return null;
+
+  const coords = json.routes[0].geometry.coordinates.map(([lng, lat]) => [
+    lat,
+    lng,
+  ]);
+
+  const distanceKm = (json.routes[0].distance / 1000).toFixed(1);
+  const durationMin = Math.round(json.routes[0].duration / 60);
+
+  return { coords, distanceKm, durationMin };
+}
+
+
+
 {fromPos && (
   <Marker position={[fromPos.lat, fromPos.lng]} icon={redIcon}>
     <Popup><b>Départ</b><br />{fromPos.label}</Popup>
