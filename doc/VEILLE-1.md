@@ -47,4 +47,14 @@ https://tailwindcss.com/blog
 Youtube:
 https://www.youtube.com/@programmingwithprem
 
+## Collection Raindrop (RSS public)
 
+https://bg.raindrop.io/rss/public/67021087
+
+## Lien de l'aggrégateur
+https://start.me/p/bprepm/planmytrip
+
+
+## Google Sheets:
+
+https://docs.google.com/spreadsheets/d/1Th8P8H7KG0nK4rCKjskMJ49MULPw8AMnnlHrVY-SVY4/edit?usp=sharing
