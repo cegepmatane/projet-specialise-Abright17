@@ -31,4 +31,20 @@ OpenStreetMap Foundation:
 https://blog.openstreetmap.org/feed/
 
 
+## lien 5 forums:
+Reddit :
+https://www.reddit.com/r/reactjs/
+
+stackoverflow:
+https://stackoverflow.com/questions/tagged/leaflet
+
+Discord:
+https://www.reactiflux.com/
+
+Blog:
+https://tailwindcss.com/blog
+
+Youtube:
+https://www.youtube.com/@programmingwithprem
+
 
