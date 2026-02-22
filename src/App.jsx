@@ -9,6 +9,20 @@ import {
 } from "react-leaflet";
 import L from "leaflet";
 import data from "./data/data.json";
+import { useState } from "react";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import "./index.css";
+
+export default function App() {
+  const [user, setUser] = useState(null);
+
+  return user ? (
+    <Home user={user} onLogout={() => setUser(null)} />
+  ) : (
+    <Login onLogin={setUser} />
+  );
+}
 
 
 const redIcon = new L.Icon({
