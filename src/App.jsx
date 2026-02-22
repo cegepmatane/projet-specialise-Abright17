@@ -158,9 +158,6 @@ export default function App() {
     }
 
     setRoute(r);
-    setStatus(
-      `OK — route: ${r.distanceKm} km, ~${r.durationMin} min | vol d'oiseau: ${flyKm.toFixed(1)} km`
-    );
   }
 
   return (
