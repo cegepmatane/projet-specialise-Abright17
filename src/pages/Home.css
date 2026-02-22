@@ -1,0 +1,61 @@
+.home-page{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 18px 16px;
+}
+
+.home-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.home-title{
+  margin: 0;
+}
+
+.home-subtitle{
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+.home-logout{
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  cursor: pointer;
+}
+
+.home-logout:hover{
+  background: #f3f4f6;
+}
+
+.home-card{
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+}
+
+.home-welcome{
+  margin-top: 0;
+}
+
+.home-name{
+  color: #2563eb;
+  font-weight: 800;
+}
+
+.home-infos{
+  padding-left: 18px;
+  margin: 10px 0 0;
+}
+
+.home-next{
+  margin-top: 14px;
+  color: #374151;
+}
