@@ -1,61 +1,138 @@
-.home-page{
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 18px 16px;
-}
-
-.home-header{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 16px;
-}
-
-.home-title{
+html, body, #root {
+  height: 100%;
+  width: 100%;
   margin: 0;
 }
 
-.home-subtitle{
-  margin: 6px 0 0;
+.page-accueil {
+  min-height: 100vh;
+  background: #f5f7fb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #1f2937;
+}
+
+
+.barre-haut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo-site {
+  font-weight: 800;
+  font-size: 20px;
+  color: #2563eb;
+}
+
+.message-bienvenue {
+  font-size: 14px;
   color: #6b7280;
 }
 
-.home-logout{
-  padding: 10px 12px;
-  border-radius: 10px;
-  border: 1px solid #e5e7eb;
-  background: white;
+.nom-utilisateur {
+  font-weight: 600;
+  color: #111827;
+}
+
+.bouton-deconnexion {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  background: #ef4444;
+  color: white;
   cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s ease;
 }
 
-.home-logout:hover{
-  background: #f3f4f6;
+.bouton-deconnexion:hover {
+  background: #dc2626;
 }
 
-.home-card{
+.section-principale {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.conteneur-principal {
   background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.home-welcome{
-  margin-top: 0;
+.etiquette-prototype {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
 }
 
-.home-name{
+.titre-principal {
+  font-size: 30px;
+  margin: 15px 0 8px;
+}
+
+.texte-accent {
   color: #2563eb;
-  font-weight: 800;
 }
 
-.home-infos{
-  padding-left: 18px;
-  margin: 10px 0 0;
+.sous-titre {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 25px;
 }
 
-.home-next{
-  margin-top: 14px;
-  color: #374151;
+.formulaire-recherche {
+  display: grid;
+  grid-template-columns: 1fr 150px 150px;
+  gap: 12px;
+  align-items: end;
+}
+
+.champ-formulaire {
+  display: flex;
+  flex-direction: column;
+}
+
+.etiquette-champ {
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: #6b7280;
+}
+
+.input-champ {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  outline: none;
+}
+
+.input-champ:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+}
+
+.bouton-recherche {
+  height: 42px;
+  border-radius: 10px;
+  border: none;
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.bouton-recherche:hover {
+  background: #1d4ed8;
+}
 }

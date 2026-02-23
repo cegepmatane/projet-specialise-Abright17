@@ -1,32 +1,93 @@
-export default function Home({ user, onLogout }) {
+import { useState } from "react";
+import "./Home.css";
+
+export default function Accueil({ utilisateur, onDeconnexion, onRecherche }) {
+  const [destination, setDestination] = useState("");
+  const [nombrePersonnes, setNombrePersonnes] = useState(
+    utilisateur?.nbPersonnesParDefaut ?? 2
+  );
+
+  function gererSoumission(event) {
+    event.preventDefault();
+
+    const destinationNettoyee = destination.trim();
+    if (!destinationNettoyee) return;
+
+    onRecherche?.({
+      destination: destinationNettoyee,
+      nombrePersonnes: Number(nombrePersonnes) || 1,
+    });
+  }
+
   return (
-    <div className="home-page">
-      <header className="home-header">
+    <div className="page-accueil">
+
+      <header className="barre-haut">
         <div>
-          <h1 className="home-title">Accueil</h1>
-          <p className="home-subtitle">PlanMyTrip — Prototype</p>
+          <div className="logo-site">PlanMyTrip</div>
+          <div className="message-bienvenue">
+            Bienvenue{" "}
+            <span className="nom-utilisateur">
+              {utilisateur?.prenom} {utilisateur?.nom}
+            </span>
+          </div>
         </div>
 
-        <button className="home-logout" onClick={onLogout}>
+        <button className="bouton-deconnexion" onClick={onDeconnexion}>
           Déconnexion
         </button>
       </header>
 
-      <section className="home-card">
-        <h2 className="home-welcome">
-          Bienvenue <span className="home-name">{user.prenom} {user.nom}</span>
-        </h2>
+      <section className="section-principale">
+        <div className="conteneur-principal">
 
-        <ul className="home-infos">
-          <li><b>Email :</b> {user.email}</li>
-          <li><b>Budget max :</b> {user.budgetMax}$</li>
-          <li><b>Nb personnes (défaut) :</b> {user.nbPersonnesParDefaut}</li>
-        </ul>
+          <div className="etiquette-prototype">Prototype</div>
 
-        <p className="home-next">
-          Connexion réussie. Prochaine étape : sélection d’hôtels/activités + affichage sur la carte.
-        </p>
+          <h1 className="titre-principal">
+            Planifie ton voyage simplement.
+            <span className="texte-accent">
+              {" "}Hébergement, activités, itinéraire.
+            </span>
+          </h1>
+
+          <p className="sous-titre">
+            Entre une destination et le nombre de personnes pour commencer.
+          </p>
+
+          <form className="formulaire-recherche" onSubmit={gererSoumission}>
+
+            <div className="champ-formulaire">
+              <label className="etiquette-champ">Destination</label>
+              <input
+                className="input-champ"
+                value={destination}
+                onChange={(event) => setDestination(e.target.value)}
+                placeholder="Ex: Matane, Paris, Montréal..."
+                required
+              />
+            </div>
+
+            <div className="champ-formulaire">
+              <label className="etiquette-champ">Personnes</label>
+              <input
+                className="input-champ"
+                type="number"
+                min="1"
+                max="12"
+                value={nombrePersonnes}
+                onChange={(event) => setNombrePersonnes(event.target.value)}
+                required
+              />
+            </div>
+
+            <button className="bouton-recherche" type="submit">
+              Rechercher
+            </button>
+
+          </form>
+        </div>
       </section>
+
     </div>
   );
 }
