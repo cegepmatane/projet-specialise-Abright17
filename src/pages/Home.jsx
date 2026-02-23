@@ -1,4 +1,3 @@
-
 export default function Home({ user, onLogout }) {
   return (
     <div className="home-page">
@@ -15,7 +14,7 @@ export default function Home({ user, onLogout }) {
 
       <section className="home-card">
         <h2 className="home-welcome">
-          Bienvenue <span className="home-name">{user.prenom} {user.nom}</span> 👋
+          Bienvenue <span className="home-name">{user.prenom} {user.nom}</span>
         </h2>
 
         <ul className="home-infos">
@@ -25,7 +24,7 @@ export default function Home({ user, onLogout }) {
         </ul>
 
         <p className="home-next">
-          ✅ Connexion réussie. Prochaine étape : sélection d’hôtels/activités + affichage sur la carte.
+          Connexion réussie. Prochaine étape : sélection d’hôtels/activités + affichage sur la carte.
         </p>
       </section>
     </div>

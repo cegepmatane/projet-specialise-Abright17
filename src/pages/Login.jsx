@@ -34,14 +34,14 @@ export default function Login({ onLogin }) {
         budgetMax: user.budgetMax,
         nbPersonnesParDefaut: user.nbPersonnesParDefaut,
       });
-    }, 600);
+    }, 6);
   }
 
   return (
     <div className="login-page">
       <div className="login-card">
         <h1 className="login-title">PlanMyTrip</h1>
-        <p className="login-subtitle">Connexion (prototype)</p>
+        <p className="login-subtitle">Connexion</p>
 
         <form onSubmit={handleSubmit} className="login-form">
           <label className="login-label">Email</label>
