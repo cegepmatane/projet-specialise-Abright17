@@ -1,81 +1,145 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import donnees from "../data/data.json";
 import "./Home.css";
 
-export default function Accueil({ utilisateur, onDeconnexion, onRecherche }) {
+export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
   const [destination, setDestination] = useState("");
-  const [nombrePersonnes, setNombrePersonnes] = useState(
+  const [nbPersonnes, setNbPersonnes] = useState(
     utilisateur?.nbPersonnesParDefaut ?? 2
   );
 
-  function gererSoumission(event) {
-    event.preventDefault();
+  const [historique, setHistorique] = useState([]);
 
-    const destinationNettoyee = destination.trim();
-    if (!destinationNettoyee) return;
+  useEffect(() => {
+    const sauvegarde = JSON.parse(
+      localStorage.getItem("planmytrip_historique") || "[]"
+    );
+    setHistorique(sauvegarde);
+  }, []);
 
-    onRecherche?.({
-      destination: destinationNettoyee,
-      nombrePersonnes: Number(nombrePersonnes) || 1,
-    });
+  function sauvegarderDansHistorique(item) {
+    const sauvegarde = JSON.parse(
+      localStorage.getItem("planmytrip_historique") || "[]"
+    );
+    const nettoye = sauvegarde.filter(
+      (x) =>
+        !(
+          x.destination === item.destination &&
+          x.nbPersonnes === item.nbPersonnes
+        )
+    );
+    const suivant = [item, ...nettoye].slice(0, 6);
+    localStorage.setItem("planmytrip_historique", JSON.stringify(suivant));
+    setHistorique(suivant);
+  }
+
+  //ACTIVITÉS RECOMMANDÉES
+  const activitesRecommandees = useMemo(() => {
+    const villes = Array.isArray(donnees?.villes) ? donnees.villes : [];
+    const toutes = villes.flatMap((v) =>
+      Array.isArray(v?.activites) ? v.activites : []
+    );
+    return toutes.slice(0, 6);
+  }, []);
+
+  // SUGGESTIONS DESTINATION
+  const suggestionsDestination = useMemo(() => {
+    const villes = Array.isArray(donnees?.villes) ? donnees.villes : [];
+    return villes
+      .map((v) => String(v?.nom || "").trim())
+      .filter(Boolean)
+      .slice(0, 8);
+  }, []);
+
+  function gererSoumission(e) {
+    e.preventDefault();
+    const destinationPropre = destination.trim();
+    if (!destinationPropre) return;
+
+    const recherche = {
+      destination: destinationPropre,
+      nbPersonnes: Number(nbPersonnes) || 1,
+      date: new Date().toISOString(),
+    };
+
+    sauvegarderDansHistorique(recherche);
+    surRecherche?.(recherche);
+  }
+
+  function appliquerHistorique(item) {
+    setDestination(item.destination);
+    setNbPersonnes(item.nbPersonnes);
+  }
+
+  function effacerHistorique() {
+    localStorage.removeItem("planmytrip_historique");
+    setHistorique([]);
   }
 
   return (
-    <div className="page-accueil">
-
-      <header className="barre-haut">
-        <div>
-          <div className="logo-site">PlanMyTrip</div>
-          <div className="message-bienvenue">
+    <div className="accueil">
+      <header className="barre-superieure">
+        <div className="barre-gauche">
+          <div className="marque">PlanMyTrip</div>
+          <div className="bienvenue">
             Bienvenue{" "}
-            <span className="nom-utilisateur">
+            <span className="nom-bienvenue">
               {utilisateur?.prenom} {utilisateur?.nom}
             </span>
           </div>
         </div>
 
-        <button className="bouton-deconnexion" onClick={onDeconnexion}>
+        <button className="bouton-deconnexion" onClick={surDeconnexion}>
           Déconnexion
         </button>
       </header>
 
-      <section className="section-principale">
-        <div className="conteneur-principal">
+      {/* ZONE HERO */}
+      <section className="zone-hero">
+        <div className="contenu-hero">
+          <div className="etiquette">Prototype</div>
 
-          <div className="etiquette-prototype">Prototype</div>
-
-          <h1 className="titre-principal">
+          <h1 className="titre-hero">
             Planifie ton voyage simplement.
-            <span className="texte-accent">
-              {" "}Hébergement, activités, itinéraire.
+            <span className="accent-titre-hero">
+              {" "}
+              Hébergement, activités, itinéraire.
             </span>
           </h1>
 
-          <p className="sous-titre">
-            Entre une destination et le nombre de personnes pour commencer.
+          <p className="sous-titre-hero">
+            Entre une destination et le nombre de personnes. Ensuite tu pourras
+            choisir ton hébergement.
           </p>
 
-          <form className="formulaire-recherche" onSubmit={gererSoumission}>
-
-            <div className="champ-formulaire">
-              <label className="etiquette-champ">Destination</label>
+          {/* BARRE DE RECHERCHE */}
+          <form className="barre-recherche" onSubmit={gererSoumission}>
+            <div className="champ">
+              <label className="label-champ">Destination</label>
               <input
                 className="input-champ"
                 value={destination}
-                onChange={(event) => setDestination(e.target.value)}
-                placeholder="Ex: Matane, Paris, Montréal..."
+                onChange={(e) => setDestination(e.target.value)}
+                placeholder="Ex: Matane, Rimouski..."
+                list="destinations"
                 required
               />
+              <datalist id="destinations">
+                {suggestionsDestination.map((d) => (
+                  <option key={d} value={d} />
+                ))}
+              </datalist>
             </div>
 
-            <div className="champ-formulaire">
-              <label className="etiquette-champ">Personnes</label>
+            <div className="champ champ-petit">
+              <label className="label-champ">Personnes</label>
               <input
                 className="input-champ"
                 type="number"
                 min="1"
                 max="12"
-                value={nombrePersonnes}
-                onChange={(event) => setNombrePersonnes(event.target.value)}
+                value={nbPersonnes}
+                onChange={(e) => setNbPersonnes(e.target.value)}
                 required
               />
             </div>
@@ -83,11 +147,179 @@ export default function Accueil({ utilisateur, onDeconnexion, onRecherche }) {
             <button className="bouton-recherche" type="submit">
               Rechercher
             </button>
-
           </form>
+
+          <div className="historique">
+            <div className="ligne-historique">
+              <div className="titre-historique">Historique des recherches</div>
+
+              {historique.length > 0 && (
+                <button
+                  type="button"
+                  className="nettoyer-historique"
+                  onClick={effacerHistorique}
+                >
+                  Effacer
+                </button>
+              )}
+            </div>
+
+            {historique.length === 0 ? (
+              <div className="historique-vide">
+                Aucune recherche pour le moment.
+              </div>
+            ) : (
+              <div className="jetons-historique">
+                {historique.map((h, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className="jeton"
+                    onClick={() => appliquerHistorique(h)}
+                    title="Cliquer pour réutiliser"
+                  >
+                    {h.destination} • {h.nbPersonnes} pers.
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <aside className="cote-hero">
+          <div className="titre-cote">Étapes du voyage</div>
+          <ol className="etapes">
+            <li>
+              <b>Recherche</b> (destination + personnes)
+            </li>
+            <li>
+              <b>Hébergement</b> (choisir un hôtel)
+            </li>
+            <li>
+              <b>Activités</b> (ajouter des lieux)
+            </li>
+            <li>
+              <b>Carte</b> (itinéraire sur Leaflet)
+            </li>
+          </ol>
+          <div className="astuce">
+            Astuce : clique une recherche dans l’historique pour la réutiliser.
+          </div>
+        </aside>
+      </section>
+
+      <section className="section">
+        <div className="entete-section">
+          <h2 className="titre-section">Activités recommandées</h2>
+          <p className="sous-titre-section">
+            Suggestions basées sur ton fichier <code>data.json</code>.
+          </p>
+        </div>
+
+        <div className="grille">
+          {activitesRecommandees.length === 0 ? (
+            <div className="vide">
+              Aucune activité trouvée dans <code>data.json</code> (clé{" "}
+              <b>villes[].activites</b>).
+            </div>
+          ) : (
+            activitesRecommandees.map((a) => (
+              <article key={a.id ?? a.name} className="carte">
+                <div className="haut-carte">
+                  <div className="pilule">{a.category ?? "Activité"}</div>
+                  <div className="prix">
+                    {typeof a.price === "number" ? `${a.price}$` : "—"}
+                  </div>
+                </div>
+
+                <div className="titre-carte">{a.name ?? "Sans nom"}</div>
+
+                <div className="meta-carte">
+                  {a.lat && a.lng
+                    ? `📍 ${a.lat}, ${a.lng}`
+                    : "📍 Destination"}
+                </div>
+
+                {/* IMAGE (si disponible dans data.json) */}
+                {a.image && (
+                  <img
+                    src={a.image}
+                    alt={a.name}
+                    className="image-carte"
+                  />
+                )}
+              </article>
+            ))
+          )}
         </div>
       </section>
 
+      {/* DONNÉES JSON */}
+      <section className="section">
+        <div className="entete-section">
+          <h2 className="titre-section">Données chargées (data.json)</h2>
+          <p className="sous-titre-section">
+            Aperçu des villes et des lieux disponibles (restaurants, hébergements,
+            activités).
+          </p>
+        </div>
+
+        <div className="grille">
+          {(donnees?.villes || []).map((ville) => (
+            <article key={ville.nom} className="carte">
+              <div className="titre-carte">{ville.nom}</div>
+
+              <div className="meta-carte">
+                  Restaurants : {(ville.restaurants || []).length}
+                <br />
+                  Hébergements : {(ville.hebergements || []).length}
+                <br />
+                  Activités : {(ville.activites || []).length}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+
+      <section className="section">
+        <div className="entete-section">
+          <h2 className="titre-section">Pourquoi PlanMyTrip ?</h2>
+          <p className="sous-titre-section">
+            Un prototype clair, étape par étape.
+          </p>
+        </div>
+
+        <div className="grille">
+          <div className="carte">
+            <div className="icone"></div>
+            <div className="titre">Itinéraire</div>
+            <div className="texte">
+              Visualise ton trajet sur la carte avec les lieux choisis.
+            </div>
+          </div>
+
+          <div className="carte">
+            <div className="icone"></div>
+            <div className="titre">Carte interactive</div>
+            <div className="texte">
+              Marqueurs, infos, et affichage clair des endroits.
+            </div>
+          </div>
+
+          <div className="carte">
+            <div className="icone"></div>
+            <div className="titre">Simple</div>
+            <div className="texte">
+              Tu avances : recherche → hôtel → activités → carte.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="pied-de-page">
+        PlanMyTrip — Prototype (Cégep de Matane)
+      </footer>
     </div>
   );
 }

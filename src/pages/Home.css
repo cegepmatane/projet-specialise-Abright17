@@ -4,15 +4,13 @@ html, body, #root {
   margin: 0;
 }
 
-.page-accueil {
+.accueil {
   min-height: 100vh;
   background: #f5f7fb;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   color: #1f2937;
 }
-
-
-.barre-haut {
+.barre-superieure {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,18 +19,19 @@ html, body, #root {
   border-bottom: 1px solid #e5e7eb;
 }
 
-.logo-site {
+.marque {
   font-weight: 800;
   font-size: 20px;
   color: #2563eb;
 }
 
-.message-bienvenue {
+.bienvenue {
   font-size: 14px;
+  margin-top: 4px;
   color: #6b7280;
 }
 
-.nom-utilisateur {
+.nom-bienvenue {
   font-weight: 600;
   color: #111827;
 }
@@ -52,20 +51,23 @@ html, body, #root {
   background: #dc2626;
 }
 
-.section-principale {
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 0 40px;
+.zone-hero {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.conteneur-principal {
+.contenu-hero {
   background: white;
-  padding: 40px;
+  padding: 30px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.etiquette-prototype {
+.etiquette {
   display: inline-block;
   background: #e0f2fe;
   color: #0369a1;
@@ -75,34 +77,34 @@ html, body, #root {
   font-weight: 600;
 }
 
-.titre-principal {
+.titre-hero {
   font-size: 30px;
   margin: 15px 0 8px;
 }
 
-.texte-accent {
+.accent-titre-hero {
   color: #2563eb;
 }
 
-.sous-titre {
+.sous-titre-hero {
   font-size: 14px;
   color: #6b7280;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
-.formulaire-recherche {
+.barre-recherche {
   display: grid;
   grid-template-columns: 1fr 150px 150px;
   gap: 12px;
   align-items: end;
 }
 
-.champ-formulaire {
+.champ {
   display: flex;
   flex-direction: column;
 }
 
-.etiquette-champ {
+.label-champ {
   font-size: 12px;
   margin-bottom: 5px;
   color: #6b7280;
@@ -135,4 +137,189 @@ html, body, #root {
 .bouton-recherche:hover {
   background: #1d4ed8;
 }
+
+.historique {
+  margin-top: 20px;
+}
+
+.ligne-historique {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titre-historique {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nettoyer-historique {
+  font-size: 12px;
+  background: none;
+  border: none;
+  color: #ef4444;
+  cursor: pointer;
+}
+
+.historique-vide {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+.jetons-historique {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.jeton {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #e5e7eb;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.jeton:hover {
+  background: #d1d5db;
+}
+
+
+.cote-hero {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.titre-cote {
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.etapes {
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.astuce {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+
+.section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 30px 40px;
+}
+
+.titre-section {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.sous-titre-section {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.carte {
+  background: white;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+}
+
+.haut-carte {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.pilule {
+  font-size: 11px;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.prix {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.titre-carte {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.meta-carte {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+
+.grille {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.carte{
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+  text-align: center;
+}
+
+.icone {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.titre {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.texte {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+@media (max-width: 900px) {
+  .zone-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .grille{
+    grid-template-columns: 1fr;
+  }
+
+  .barre-recherche {
+    grid-template-columns: 1fr;
+  }
 }
