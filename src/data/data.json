@@ -1,46 +1,113 @@
 {
-  "activities": [
+  "villes": [
     {
-      "id": 1,
-      "name": "Cégep de Matane",
-      "category": "École",
-      "price": 0,
-      "lat": 48.84074746106847,
-      "lng": -67.49742427350874
+      "nom": "Matane",
+      "restaurants": [
+        {
+          "id": "mat_rest_1",
+          "name": "McDonald's Matane",
+          "category": "Restaurant",
+          "price": 12,
+          "lat": 48.85154105306837,
+          "lng": -67.53214480042968,
+          "image": "/images/matane/mcdonalds.jpg",
+          "description": "Restaurant rapide situé près du centre."
+        },
+        {
+          "id": "mat_rest_2",
+          "name": "Tim Hortons Matane",
+          "category": "Restaurant",
+          "price": 10,
+          "lat": 48.8509,
+          "lng": -67.5284,
+          "image": "/images/matane/timhortons.jpg",
+          "description": "Café et restauration rapide."
+        }
+      ],
+      "hebergements": [
+        {
+          "id": "mat_hot_1",
+          "name": "Riôtel Matane",
+          "category": "Hôtel",
+          "priceParNuit": 150,
+          "lat": 48.85336499845497,
+          "lng": -67.52561361873343,
+          "image": "/images/matane/riotel.jpg",
+          "description": "Hôtel avec vue sur le fleuve."
+        }
+      ],
+      "activites": [
+        {
+          "id": "mat_act_1",
+          "name": "Cégep de Matane",
+          "category": "École",
+          "price": 0,
+          "lat": 48.84074746106847,
+          "lng": -67.49742427350874,
+          "image": "/images/matane/cegep.jpg",
+          "description": "Lieu d'études et point de repère."
+        },
+        {
+          "id": "mat_act_2",
+          "name": "Parc des Îles",
+          "category": "Parc",
+          "price": 0,
+          "lat": 48.8438,
+          "lng": -67.5293,
+          "image": "/images/matane/parc-iles.jpg",
+          "description": "Promenade avec vue sur la rivière."
+        }
+      ]
     },
+
     {
-      "id": 2,
-      "name": "McDonald's Matane",
-      "category": "Restaurant",
-      "price": 12,
-      "lat": 48.85154105306837,
-      "lng": -67.53214480042968
-    },
-    {
-      "id": 3,
-      "name": "Parc des Îles",
-      "category": "Parc",
-      "price": 0,
-      "lat": 48.8438,
-      "lng": -67.5293
-    }
-  ],
-  "hotels": [
-    {
-      "id": 1,
-      "name": "Riôtel Matane",
-      "category": "Hôtel",
-      "price": 150,
-      "lat": 48.85336499845497,
-      "lng": -67.52561361873343
-    },
-    {
-      "id": 2,
-      "name": "Tim Hortons Matane",
-      "category": "Restaurant",
-      "price": 10,
-      "lat": 48.8509,
-      "lng": -67.5284
+      "nom": "Rimouski",
+      "restaurants": [
+        {
+          "id": "rim_rest_1",
+          "name": "Restaurant La Réserve",
+          "category": "Restaurant",
+          "price": 25,
+          "lat": 48.448,
+          "lng": -68.523,
+          "image": "/images/rimouski/reserve.jpg",
+          "description": "Restaurant gastronomique local."
+        }
+      ],
+      "hebergements": [
+        {
+          "id": "rim_hot_1",
+          "name": "Hôtel Rimouski",
+          "category": "Hôtel",
+          "priceParNuit": 165,
+          "lat": 48.447,
+          "lng": -68.528,
+          "image": "/images/rimouski/hotel-rimouski.jpg",
+          "description": "Hôtel avec spa et centre-ville proche."
+        }
+      ],
+      "activites": [
+        {
+          "id": "rim_act_1",
+          "name": "Site historique maritime de la Pointe-au-Père",
+          "category": "Musée",
+          "price": 20,
+          "lat": 48.493,
+          "lng": -68.453,
+          "image": "/images/rimouski/pointe-au-pere.jpg",
+          "description": "Musée maritime et phare historique."
+        },
+        {
+          "id": "rim_act_2",
+          "name": "Parc Beauséjour",
+          "category": "Parc",
+          "price": 0,
+          "lat": 48.454,
+          "lng": -68.517,
+          "image": "/images/rimouski/parc-beausejour.jpg",
+          "description": "Parc urbain pour détente et promenade."
+        }
+      ]
     }
   ]
 }
