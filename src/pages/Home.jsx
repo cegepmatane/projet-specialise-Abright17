@@ -94,7 +94,6 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
         </button>
       </header>
 
-      {/* ZONE HERO */}
       <section className="zone-hero">
         <div className="contenu-hero">
           <div className="etiquette">Prototype</div>
@@ -124,11 +123,6 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
                 list="destinations"
                 required
               />
-              <datalist id="destinations">
-                {suggestionsDestination.map((d) => (
-                  <option key={d} value={d} />
-                ))}
-              </datalist>
             </div>
 
             <div className="champ champ-petit">
@@ -212,7 +206,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
         <div className="entete-section">
           <h2 className="titre-section">Activités recommandées</h2>
           <p className="sous-titre-section">
-            Suggestions basées sur ton fichier <code>data.json</code>.
+            Suggestions de choses à faire sur place.
           </p>
         </div>
 
@@ -224,27 +218,24 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
             </div>
           ) : (
             activitesRecommandees.map((a) => (
-              <article key={a.id ?? a.name} className="carte">
+              <article key={String(a.id)} className="carte">
                 <div className="haut-carte">
-                  <div className="pilule">{a.category ?? "Activité"}</div>
+                  <div className="pilule">{a.categorie ?? "Activité"}</div>
                   <div className="prix">
-                    {typeof a.price === "number" ? `${a.price}$` : "—"}
+                    {typeof a.prix === "number" ? `${a.prix}$` : "—"}
                   </div>
                 </div>
 
-                <div className="titre-carte">{a.name ?? "Sans nom"}</div>
+                <div className="titre-carte">{a.nom ?? "Sans nom"}</div>
 
                 <div className="meta-carte">
-                  {a.lat && a.lng
-                    ? `📍 ${a.lat}, ${a.lng}`
-                    : "📍 Destination"}
+                  {a.lat && a.lng ? `📍 ${a.lat}, ${a.lng}` : "📍 Destination"}
                 </div>
 
-                {/* IMAGE (si disponible dans data.json) */}
                 {a.image && (
                   <img
                     src={a.image}
-                    alt={a.name}
+                    alt={a.nom ?? "Activité"}
                     className="image-carte"
                   />
                 )}
@@ -286,7 +277,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
         <div className="entete-section">
           <h2 className="titre-section">Pourquoi PlanMyTrip ?</h2>
           <p className="sous-titre-section">
-            Un prototype clair, étape par étape.
+            Un planning de voyage clair, étape par étape.
           </p>
         </div>
 
@@ -311,15 +302,11 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
             <div className="icone"></div>
             <div className="titre">Simple</div>
             <div className="texte">
-              Tu avances : recherche → hôtel → activités → carte.
+              Tu avances : 1-recherche 2-hôtel 3-activités 4-carte.
             </div>
           </div>
         </div>
       </section>
-
-      <footer className="pied-de-page">
-        PlanMyTrip — Prototype (Cégep de Matane)
-      </footer>
     </div>
   );
 }

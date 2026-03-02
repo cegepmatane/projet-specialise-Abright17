@@ -1,111 +1,172 @@
 {
   "villes": [
     {
+      "id": "matane",
       "nom": "Matane",
-      "restaurants": [
-        {
-          "id": "mat_rest_1",
-          "name": "McDonald's Matane",
-          "category": "Restaurant",
-          "price": 12,
-          "lat": 48.85154105306837,
-          "lng": -67.53214480042968,
-          "image": "/images/matane/mcdonalds.jpg",
-          "description": "Restaurant rapide situé près du centre."
-        },
-        {
-          "id": "mat_rest_2",
-          "name": "Tim Hortons Matane",
-          "category": "Restaurant",
-          "price": 10,
-          "lat": 48.8509,
-          "lng": -67.5284,
-          "image": "/images/matane/timhortons.jpg",
-          "description": "Café et restauration rapide."
-        }
-      ],
       "hebergements": [
         {
-          "id": "mat_hot_1",
-          "name": "Riôtel Matane",
-          "category": "Hôtel",
-          "priceParNuit": 150,
+          "id": "mat-heb-1",
+          "nom": "Riôtel Matane",
+          "categorie": "Hôtel",
+          "prix": 150,
+          "image": "",
           "lat": 48.85336499845497,
-          "lng": -67.52561361873343,
-          "image": "/images/matane/riotel.jpg",
-          "description": "Hôtel avec vue sur le fleuve."
+          "lng": -67.52561361873343
+        },
+        {
+          "id": "mat-heb-2",
+          "nom": "Auberge du Port",
+          "categorie": "Auberge",
+          "prix": 115,
+          "image": "",
+          "lat": 48.8542,
+          "lng": -67.5301
+        },
+        {
+          "id": "mat-heb-3",
+          "nom": "Motel Central",
+          "categorie": "Motel",
+          "prix": 89,
+          "image": "",
+          "lat": 48.8521,
+          "lng": -67.5352
         }
       ],
       "activites": [
         {
-          "id": "mat_act_1",
-          "name": "Cégep de Matane",
-          "category": "École",
-          "price": 0,
+          "id": "mat-act-1",
+          "nom": "Cégep de Matane",
+          "categorie": "École",
+          "prix": 0,
+          "image": "",
           "lat": 48.84074746106847,
-          "lng": -67.49742427350874,
-          "image": "/images/matane/cegep.jpg",
-          "description": "Lieu d'études et point de repère."
+          "lng": -67.49742427350874
         },
         {
-          "id": "mat_act_2",
-          "name": "Parc des Îles",
-          "category": "Parc",
-          "price": 0,
+          "id": "mat-act-2",
+          "nom": "McDonald's Matane",
+          "categorie": "Restaurant",
+          "prix": 12,
+          "image": "",
+          "lat": 48.85154105306837,
+          "lng": -67.53214480042968
+        },
+        {
+          "id": "mat-act-3",
+          "nom": "Parc des Îles",
+          "categorie": "Parc",
+          "prix": 0,
+          "image": "",
           "lat": 48.8438,
-          "lng": -67.5293,
-          "image": "/images/matane/parc-iles.jpg",
-          "description": "Promenade avec vue sur la rivière."
+          "lng": -67.5293
+        }
+      ],
+      "transports": [
+        {
+          "id": "mat-tr-1",
+          "nom": "Location voiture (compacte)",
+          "type": "Voiture",
+          "prix": 65,
+          "image": ""
+        },
+        {
+          "id": "mat-tr-2",
+          "nom": "Taxi (estimation centre-ville)",
+          "type": "Taxi",
+          "prix": 18,
+          "image": ""
+        },
+        {
+          "id": "mat-tr-3",
+          "nom": "Autobus local",
+          "type": "Bus",
+          "prix": 4,
+          "image": ""
         }
       ]
     },
-
     {
+      "id": "rimouski",
       "nom": "Rimouski",
-      "restaurants": [
-        {
-          "id": "rim_rest_1",
-          "name": "Restaurant La Réserve",
-          "category": "Restaurant",
-          "price": 25,
-          "lat": 48.448,
-          "lng": -68.523,
-          "image": "/images/rimouski/reserve.jpg",
-          "description": "Restaurant gastronomique local."
-        }
-      ],
       "hebergements": [
         {
-          "id": "rim_hot_1",
-          "name": "Hôtel Rimouski",
-          "category": "Hôtel",
-          "priceParNuit": 165,
-          "lat": 48.447,
-          "lng": -68.528,
-          "image": "/images/rimouski/hotel-rimouski.jpg",
-          "description": "Hôtel avec spa et centre-ville proche."
+          "id": "rim-heb-1",
+          "nom": "Hôtel Rimouski",
+          "categorie": "Hôtel",
+          "prix": 165,
+          "image": "",
+          "lat": 48.4495,
+          "lng": -68.5230
+        },
+        {
+          "id": "rim-heb-2",
+          "nom": "Auberge de la Vieille Maison",
+          "categorie": "Auberge",
+          "prix": 120,
+          "image": "",
+          "lat": 48.4502,
+          "lng": -68.5198
+        },
+        {
+          "id": "rim-heb-3",
+          "nom": "Motel Colonial",
+          "categorie": "Motel",
+          "prix": 95,
+          "image": "",
+          "lat": 48.4478,
+          "lng": -68.5265
         }
       ],
       "activites": [
         {
-          "id": "rim_act_1",
-          "name": "Site historique maritime de la Pointe-au-Père",
-          "category": "Musée",
-          "price": 20,
-          "lat": 48.493,
-          "lng": -68.453,
-          "image": "/images/rimouski/pointe-au-pere.jpg",
-          "description": "Musée maritime et phare historique."
+          "id": "rim-act-1",
+          "nom": "Cégep de Rimouski",
+          "categorie": "École",
+          "prix": 0,
+          "image": "",
+          "lat": 48.4525,
+          "lng": -68.5152
         },
         {
-          "id": "rim_act_2",
-          "name": "Parc Beauséjour",
-          "category": "Parc",
-          "price": 0,
-          "lat": 48.454,
-          "lng": -68.517,
-          "image": "/images/rimouski/parc-beausejour.jpg",
-          "description": "Parc urbain pour détente et promenade."
+          "id": "rim-act-2",
+          "nom": "Site historique maritime de la Pointe-au-Père",
+          "categorie": "Musée",
+          "prix": 18,
+          "image": "",
+          "lat": 48.5023,
+          "lng": -68.4696
+        },
+        {
+          "id": "rim-act-3",
+          "nom": "Parc Beauséjour",
+          "categorie": "Parc",
+          "prix": 0,
+          "image": "",
+          "lat": 48.4541,
+          "lng": -68.5227
+        }
+      ],
+      "transports": [
+        {
+          "id": "rim-tr-1",
+          "nom": "Location voiture (intermédiaire)",
+          "type": "Voiture",
+          "prix": 75,
+          "image": ""
+        },
+        {
+          "id": "rim-tr-2",
+          "nom": "Taxi (estimation centre-ville)",
+          "type": "Taxi",
+          "prix": 20,
+          "image": ""
+        },
+        {
+          "id": "rim-tr-3",
+          "nom": "Autobus urbain",
+          "type": "Bus",
+          "prix": 4,
+          "image": ""
         }
       ]
     }
