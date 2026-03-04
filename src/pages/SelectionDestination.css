@@ -15,7 +15,7 @@
 
 .actions-barre{ display:flex; gap:10px; flex-wrap:wrap; }
 
-.onglets-expedia{
+.onglets-activite{
   max-width: 1050px;
   margin: 14px auto 0;
   background:#fff;

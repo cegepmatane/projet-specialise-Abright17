@@ -64,6 +64,17 @@ export default function SelectionDestination({
     return Math.round(total * 100) / 100;
   }
 
+  function ouvrirRecap() {
+    if (!ville) return;
+
+    surVoirRecapitulatif?.({
+      villeNom: ville.nom,
+      nbPersonnes,
+      hebergementId,
+      transportId,
+      activitesIds,
+    });
+  }
 
   if (!recherche?.destination) {
     return (
@@ -112,8 +123,7 @@ export default function SelectionDestination({
         </div>
       </header>
 
-      {/* Onglets style Expedia */}
-      <section className="onglets-expedia">
+      <section className="onglets-activite">
         <button
           className={`onglet ${ongletActif === "hebergements" ? "actif" : ""}`}
           onClick={() => setOngletActif("hebergements")}
@@ -121,6 +131,7 @@ export default function SelectionDestination({
         >
         Hébergements
         </button>
+
 
         <button
           className={`onglet ${ongletActif === "activites" ? "actif" : ""}`}

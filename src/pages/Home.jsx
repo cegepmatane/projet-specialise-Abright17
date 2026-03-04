@@ -78,6 +78,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
 
   return (
     <div className="accueil">
+
       <header className="barre-superieure">
         <div className="barre-gauche">
           <div className="marque">PlanMyTrip</div>
