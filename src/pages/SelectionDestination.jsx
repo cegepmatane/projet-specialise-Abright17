@@ -120,6 +120,9 @@ export default function SelectionDestination({
           <button className="btn btn-secondaire" onClick={surRetourAccueil}>
             Retour
           </button>
+          <button className="btn btn-primaire" onClick={ouvrirRecap}>
+            Voir le récap
+          </button>
         </div>
       </header>
 
