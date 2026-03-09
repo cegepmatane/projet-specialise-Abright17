@@ -8,29 +8,91 @@ export default function Recapitulatif({
   surRetourAccueil,
   surMettreAJourSelection,
 }) {
-  const ville = useMemo(() => {
-    const villes = Array.isArray(donnees?.villes) ? donnees.villes : [];
-    return villes.find((v) => v.nom === selection?.villeNom) || null;
+  const villeSelectionnee = useMemo(() => {
+    const listeVilles = Array.isArray(donnees?.villes) ? donnees.villes : [];
+    return listeVilles.find((ville) => ville.nom === selection?.villeNom) || null;
   }, [selection]);
 
-  const nbPersonnes = Number(selection?.nbPersonnes) || 1;
+  const nombrePersonnes = Number(selection?.nbPersonnes) || 1;
 
-  const hebergement = useMemo(() => {
-    const liste = Array.isArray(ville?.hebergements) ? ville.hebergements : [];
-    return liste.find((x) => x.id === selection?.hebergementId) || null;
-  }, [ville, selection]);
+  const hebergementSelectionne = useMemo(() => {
+    const listeHebergements = Array.isArray(villeSelectionnee?.hebergements)
+      ? villeSelectionnee.hebergements
+      : [];
+    return (
+      listeHebergements.find(
+        (hebergement) => hebergement.id === selection?.hebergementId
+      ) || null
+    );
+  }, [villeSelectionnee, selection]);
 
-  const transport = useMemo(() => {
-    const liste = Array.isArray(ville?.transports) ? ville.transports : [];
-    return liste.find((x) => x.id === selection?.transportId) || null;
-  }, [ville, selection]);
+  const transportSelectionne = useMemo(() => {
+    const listeTransports = Array.isArray(villeSelectionnee?.transports)
+      ? villeSelectionnee.transports
+      : [];
+    return (
+      listeTransports.find(
+        (transport) => transport.id === selection?.transportId
+      ) || null
+    );
+  }, [villeSelectionnee, selection]);
 
-  const activitesChoisies = useMemo(() => {
-    const liste = Array.isArray(ville?.activites) ? ville.activites : [];
-    const ids = Array.isArray(selection?.activitesIds) ? selection.activitesIds : [];
-    return ids.map((id) => liste.find((a) => a.id === id)).filter(Boolean);
-  }, [ville, selection]);
+  const activitesSelectionnees = useMemo(() => {
+    const listeActivites = Array.isArray(villeSelectionnee?.activites)
+      ? villeSelectionnee.activites
+      : [];
+    const listeIdsActivites = Array.isArray(selection?.activitesIds)
+      ? selection.activitesIds
+      : [];
 
+    return listeIdsActivites
+      .map((identifiantActivite) =>
+        listeActivites.find(
+          (activite) => activite.id === identifiantActivite
+        )
+      )
+      .filter(Boolean);
+  }, [villeSelectionnee, selection]);
+
+  function retirerHebergement() {
+    surMettreAJourSelection?.({
+      ...selection,
+      hebergementId: null,
+    });
+  }
+
+  function retirerTransport() {
+    surMettreAJourSelection?.({
+      ...selection,
+      transportId: null,
+    });
+  }
+
+  function retirerActivite(identifiantActivite) {
+    const listeIdsActivites = Array.isArray(selection?.activitesIds)
+      ? selection.activitesIds
+      : [];
+
+    surMettreAJourSelection?.({
+      ...selection,
+      activitesIds: listeIdsActivites.filter(
+        (identifiant) => identifiant !== identifiantActivite
+      ),
+    });
+  }
+
+  if (!selection?.villeNom) {
+    return (
+      <div className="page-recap">
+        <div className="conteneur">
+          <h2>Récapitulatif indisponible</h2>
+          <button className="btn btn-secondaire" onClick={surRetourAccueil}>
+            Retour accueil
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page-recap">
@@ -38,7 +100,7 @@ export default function Recapitulatif({
         <div>
           <div className="titre">Récapitulatif</div>
           <div className="sous">
-            Ville : <b>{selection.villeNom}</b> • {nbPersonnes} personne(s)
+            Ville : <b>{selection.villeNom}</b> • {nombrePersonnes} personne(s)
           </div>
         </div>
 
@@ -53,9 +115,66 @@ export default function Recapitulatif({
       </header>
 
       <main className="conteneur">
-         <section className="total">
-          <div>Total</div>
-          <div className="montant">{total} $</div>
+        <section className="bloc">
+          <h3>Hébergement</h3>
+          {!hebergementSelectionne ? (
+            <p className="vide">Aucun hébergement sélectionné.</p>
+          ) : (
+            <div className="ligne">
+              <div>
+                <div className="nom">{hebergementSelectionne.nom}</div>
+                <div className="meta">{hebergementSelectionne.categorie}</div>
+              </div>
+              <div className="droite">
+                <button className="btn btn-danger" onClick={retirerHebergement}>
+                  Retirer
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className="bloc">
+          <h3>Transports</h3>
+          {!transportSelectionne ? (
+            <p className="vide">Aucun transport sélectionné.</p>
+          ) : (
+            <div className="ligne">
+              <div>
+                <div className="nom">{transportSelectionne.nom}</div>
+                <div className="meta">{transportSelectionne.type}</div>
+              </div>
+              <div className="droite">
+                <button className="btn btn-danger" onClick={retirerTransport}>
+                  Retirer
+                </button>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <section className="bloc">
+          <h3>Activités</h3>
+          {activitesSelectionnees.length === 0 ? (
+            <p className="vide">Aucune activité sélectionnée.</p>
+          ) : (
+            activitesSelectionnees.map((activite) => (
+              <div key={activite.id} className="ligne">
+                <div>
+                  <div className="nom">{activite.nom}</div>
+                  <div className="meta">{activite.categorie}</div>
+                </div>
+                <div className="droite">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => retirerActivite(activite.id)}
+                  >
+                    Retirer
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
         </section>
       </main>
     </div>
