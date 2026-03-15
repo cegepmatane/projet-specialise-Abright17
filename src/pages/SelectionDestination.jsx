@@ -58,6 +58,7 @@ export default function SelectionDestination({
   }, [villeSelectionnee]);
 
   const nombreDePersonnes = Number(recherche?.nbPersonnes) || 1;
+  const nombreDeNuits = Number(recherche?.nbNuits) || 1;
 
   function basculerSelectionActivite(identifiantActivite) {
     definirActivitesSelectionnees((ancienneListeActivites) => {
@@ -79,7 +80,7 @@ export default function SelectionDestination({
     );
 
     if (hebergementChoisi) {
-      montantTotal += Number(hebergementChoisi.prix) || 0;
+      montantTotal += (Number(hebergementChoisi.prix) || 0) * nombreDeNuits;
     }
 
     const transportChoisi = listeTransportsDisponibles.find(
@@ -109,6 +110,7 @@ export default function SelectionDestination({
     surVoirRecapitulatif?.({
       villeNom: villeSelectionnee.nom,
       nbPersonnes: nombreDePersonnes,
+      nbNuits: nombreDeNuits,
       hebergementId: identifiantHebergementSelectionne,
       transportId: identifiantTransportSelectionne,
       activitesIds: identifiantsActivitesSelectionnees,
@@ -151,7 +153,7 @@ export default function SelectionDestination({
         <div>
           <div className="titre-barre">PlanMyTrip</div>
           <div className="sous-barre">
-            Destination : <b>{villeSelectionnee.nom}</b> • {nombreDePersonnes} personne(s)
+            Destination : <b>{villeSelectionnee.nom}</b> • {nombreDePersonnes} personne(s) • {nombreDeNuits} nuit(s)
           </div>
         </div>
 
@@ -171,7 +173,7 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("hebergements")}
           type="button"
         >
-          Hébergements
+          🛏️ Hébergements
         </button>
 
         <button
@@ -179,7 +181,7 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("activites")}
           type="button"
         >
-          Activités
+          ✈️ Activités
         </button>
 
         <button
@@ -187,14 +189,14 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("transports")}
           type="button"
         >
-          Transports
+          🚗 Transports
         </button>
       </section>
 
       <main className="conteneur">
         {ongletActuel === "hebergements" && (
           <>
-            <h2>Hébergements (du moins cher au plus cher)</h2>
+            <h2>Hébergements ({nombreDeNuits} nuit(s))</h2>
             <div className="grille-cartes">
               {listeHebergementsTries.map((hebergement) => {
                 const hebergementEstSelectionne =
@@ -202,25 +204,29 @@ export default function SelectionDestination({
 
                 return (
                   <article key={hebergement.id} className="carte-element">
-                    <img
-                      className="image-element"
-                      src={hebergement.image}
-                      alt={hebergement.nom}
-                    />
+                    {hebergement.image && (
+                      <img
+                        className="image-element"
+                        src={hebergement.image}
+                        alt={hebergement.nom}
+                      />
+                    )}
+
                     <div className="contenu-carte">
                       <div className="ligne-top">
                         <div className="nom">{hebergement.nom}</div>
-                        <div className="prix">{hebergement.prix} $</div>
+                        <div className="prix">{hebergement.prix} $ / nuit</div>
                       </div>
-                      <div className="meta">{hebergement.categorie}</div>
+
+                      <div className="meta">
+                        {hebergement.categorie} • Total hôtel : {(Number(hebergement.prix) || 0) * nombreDeNuits} $
+                      </div>
 
                       <div className="actions">
                         {!hebergementEstSelectionne ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() =>
-                              definirHebergementSelectionne(hebergement.id)
-                            }
+                            onClick={() => definirHebergementSelectionne(hebergement.id)}
                             type="button"
                           >
                             Ajouter
@@ -253,11 +259,14 @@ export default function SelectionDestination({
 
                 return (
                   <article key={activite.id} className="carte-element">
-                    <img
-                      className="image-element"
-                      src={activite.image}
-                      alt={activite.nom}
-                    />
+                    {activite.image && (
+                      <img
+                        className="image-element"
+                        src={activite.image}
+                        alt={activite.nom}
+                      />
+                    )}
+
                     <div className="contenu-carte">
                       <div className="ligne-top">
                         <div className="nom">{activite.nom}</div>
@@ -302,11 +311,14 @@ export default function SelectionDestination({
 
                 return (
                   <article key={transport.id} className="carte-element">
-                    <img
-                      className="image-element"
-                      src={transport.image}
-                      alt={transport.nom}
-                    />
+                    {transport.image && (
+                      <img
+                        className="image-element"
+                        src={transport.image}
+                        alt={transport.nom}
+                      />
+                    )}
+
                     <div className="contenu-carte">
                       <div className="ligne-top">
                         <div className="nom">{transport.nom}</div>
@@ -318,9 +330,7 @@ export default function SelectionDestination({
                         {!transportEstSelectionne ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() =>
-                              definirTransportSelectionne(transport.id)
-                            }
+                            onClick={() => definirTransportSelectionne(transport.id)}
                             type="button"
                           >
                             Ajouter

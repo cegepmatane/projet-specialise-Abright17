@@ -7,7 +7,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
   const [nbPersonnes, setNbPersonnes] = useState(
     utilisateur?.nbPersonnesParDefaut ?? 2
   );
-
+  const [nbNuits, setNbNuits] = useState(1);
   const [historique, setHistorique] = useState([]);
 
   useEffect(() => {
@@ -59,6 +59,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
     const recherche = {
       destination: destinationPropre,
       nbPersonnes: Number(nbPersonnes) || 1,
+      nbNuits: Number(nbNuits) || 1,
       date: new Date().toISOString(),
     };
 
@@ -138,7 +139,18 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
                 required
               />
             </div>
-
+             <div className="champ champ-petit">
+              <label className="label-champ">Nuits</label>
+              <input
+                className="input-champ"
+                type="number"
+                min="1"
+                max="30"
+                value={nbNuits}
+                onChange={(evenement) => setNbNuits(evenement.target.value)}
+                required
+              />
+            </div>
             <button className="bouton-recherche" type="submit">
               Rechercher
             </button>

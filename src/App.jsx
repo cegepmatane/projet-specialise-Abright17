@@ -8,15 +8,30 @@ export default function App() {
   const [utilisateur, setUtilisateur] = useState(null);
   const [page, setPage] = useState("accueil");
   const [recherche, setRecherche] = useState(null);
+  const [selectionRecapitulatif, setSelectionRecapitulatif] = useState(null);
 
   function surDeconnexion() {
     setUtilisateur(null);
     setPage("accueil");
     setRecherche(null);
+    setSelectionRecapitulatif(null);
   }
 
-  function surRecherche(infoRecherche) {
-    setRecherche(infoRecherche);
+  function surRecherche(informationRecherche) {
+    setRecherche(informationRecherche);
+    setPage("selection");
+  }
+
+  function surVoirRecapitulatif(nouvelleSelection) {
+    setSelectionRecapitulatif(nouvelleSelection);
+    setPage("recapitulatif");
+  }
+
+  function surRetourAccueil() {
+    setPage("accueil");
+  }
+
+  function surRetourSelection() {
     setPage("selection");
   }
 
@@ -28,14 +43,23 @@ export default function App() {
     return (
       <SelectionDestination
         recherche={recherche}
-        surRetourAccueil={() => setPage("accueil")}
-        surVoirRecapitulatif={(recap) => {
-          // pour l'instant, tu peux juste log
-          console.log("Récap:", recap);
-        }}
+        surRetourAccueil={surRetourAccueil}
+        surVoirRecapitulatif={surVoirRecapitulatif}
       />
     );
   }
+
+  if (page === "recapitulatif" && selectionRecapitulatif) {
+    return (
+      <Recapitulatif
+        selection={selectionRecapitulatif}
+        surRetourSelection={surRetourSelection}
+        surRetourAccueil={surRetourAccueil}
+        surMettreAJourSelection={setSelectionRecapitulatif}
+      />
+    );
+  }
+
   return (
     <Accueil
       utilisateur={utilisateur}
