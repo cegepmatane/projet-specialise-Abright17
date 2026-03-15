@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Login from "./pages/Login";
 import Accueil from "./pages/Home";
+import Recapitulatif from "./pages/Recapitulatif.jsx";
 import SelectionDestination from "./pages/SelectionDestination.jsx";
 
 export default function App() {

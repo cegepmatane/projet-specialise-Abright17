@@ -5,74 +5,113 @@ import "./SelectionDestination.css";
 export default function SelectionDestination({
   recherche,
   surRetourAccueil,
+  surVoirRecapitulatif,
 }) {
-  const [ongletActif, setOngletActif] = useState("hebergements");
+  const [ongletActuel, definirOngletActuel] = useState("hebergements");
 
-  // Sélections
-  const [hebergementId, setHebergementId] = useState(null);
-  const [transportId, setTransportId] = useState(null);
-  const [activitesIds, setActivitesIds] = useState([]);
+  // Choix de l'utilisateur
+  const [identifiantHebergementSelectionne, definirHebergementSelectionne] = useState(null);
+  const [identifiantTransportSelectionne, definirTransportSelectionne] = useState(null);
+  const [identifiantsActivitesSelectionnees, definirActivitesSelectionnees] = useState([]);
 
-  const ville = useMemo(() => {
-    const destination = String(recherche?.destination || "").trim().toLowerCase();
-    if (!destination) return null;
+  const villeSelectionnee = useMemo(() => {
+    const destinationRecherchee = String(recherche?.destination || "")
+      .trim()
+      .toLowerCase();
 
-    const villes = Array.isArray(donnees?.villes) ? donnees.villes : [];
+    if (!destinationRecherchee) return null;
+
+    const listeDesVilles = Array.isArray(donnees?.villes) ? donnees.villes : [];
+
     return (
-      villes.find((v) => String(v?.nom || "").toLowerCase() === destination) ||
-      villes.find((v) => String(v?.nom || "").toLowerCase().includes(destination)) ||
+      listeDesVilles.find(
+        (ville) => String(ville?.nom || "").toLowerCase() === destinationRecherchee
+      ) ||
+      listeDesVilles.find(
+        (ville) => String(ville?.nom || "").toLowerCase().includes(destinationRecherchee)
+      ) ||
       null
     );
   }, [recherche]);
 
-  const hebergementsTries = useMemo(() => {
-    const liste = Array.isArray(ville?.hebergements) ? ville.hebergements : [];
-    return [...liste].sort((a, b) => (a.prix ?? 0) - (b.prix ?? 0));
-  }, [ville]);
+  const listeHebergementsTries = useMemo(() => {
+    const listeHebergements = Array.isArray(villeSelectionnee?.hebergements)
+      ? villeSelectionnee.hebergements
+      : [];
 
-  const activites = useMemo(() => {
-    return Array.isArray(ville?.activites) ? ville.activites : [];
-  }, [ville]);
+    return [...listeHebergements].sort(
+      (hebergementA, hebergementB) =>
+        (hebergementA.prix ?? 0) - (hebergementB.prix ?? 0)
+    );
+  }, [villeSelectionnee]);
 
-  const transports = useMemo(() => {
-    return Array.isArray(ville?.transports) ? ville.transports : [];
-  }, [ville]);
+  const listeActivitesDisponibles = useMemo(() => {
+    return Array.isArray(villeSelectionnee?.activites)
+      ? villeSelectionnee.activites
+      : [];
+  }, [villeSelectionnee]);
 
-  const nbPersonnes = Number(recherche?.nbPersonnes) || 1;
+  const listeTransportsDisponibles = useMemo(() => {
+    return Array.isArray(villeSelectionnee?.transports)
+      ? villeSelectionnee.transports
+      : [];
+  }, [villeSelectionnee]);
 
-  function basculerActivite(id) {
-    setActivitesIds((prev) => {
-      if (prev.includes(id)) return prev.filter((x) => x !== id);
-      return [...prev, id];
+  const nombreDePersonnes = Number(recherche?.nbPersonnes) || 1;
+
+  function basculerSelectionActivite(identifiantActivite) {
+    definirActivitesSelectionnees((ancienneListeActivites) => {
+      if (ancienneListeActivites.includes(identifiantActivite)) {
+        return ancienneListeActivites.filter(
+          (identifiant) => identifiant !== identifiantActivite
+        );
+      }
+
+      return [...ancienneListeActivites, identifiantActivite];
     });
   }
 
-  function totalActuel() {
-    let total = 0;
+  function calculerTotalActuel() {
+    let montantTotal = 0;
 
-    const h = hebergementsTries.find((x) => x.id === hebergementId);
-    if (h) total += Number(h.prix) || 0;
+    const hebergementChoisi = listeHebergementsTries.find(
+      (hebergement) => hebergement.id === identifiantHebergementSelectionne
+    );
 
-    const t = transports.find((x) => x.id === transportId);
-    if (t) total += Number(t.prix) || 0;
-
-    for (const id of activitesIds) {
-      const a = activites.find((x) => x.id === id);
-      if (a) total += (Number(a.prix) || 0) * nbPersonnes;
+    if (hebergementChoisi) {
+      montantTotal += Number(hebergementChoisi.prix) || 0;
     }
 
-    return Math.round(total * 100) / 100;
+    const transportChoisi = listeTransportsDisponibles.find(
+      (transport) => transport.id === identifiantTransportSelectionne
+    );
+
+    if (transportChoisi) {
+      montantTotal += Number(transportChoisi.prix) || 0;
+    }
+
+    for (const identifiantActivite of identifiantsActivitesSelectionnees) {
+      const activiteChoisie = listeActivitesDisponibles.find(
+        (activite) => activite.id === identifiantActivite
+      );
+
+      if (activiteChoisie) {
+        montantTotal += (Number(activiteChoisie.prix) || 0) * nombreDePersonnes;
+      }
+    }
+
+    return Math.round(montantTotal * 100) / 100;
   }
 
-  function ouvrirRecap() {
-    if (!ville) return;
+  function ouvrirPageRecapitulatif() {
+    if (!villeSelectionnee) return;
 
     surVoirRecapitulatif?.({
-      villeNom: ville.nom,
-      nbPersonnes,
-      hebergementId,
-      transportId,
-      activitesIds,
+      villeNom: villeSelectionnee.nom,
+      nbPersonnes: nombreDePersonnes,
+      hebergementId: identifiantHebergementSelectionne,
+      transportId: identifiantTransportSelectionne,
+      activitesIds: identifiantsActivitesSelectionnees,
     });
   }
 
@@ -89,7 +128,7 @@ export default function SelectionDestination({
     );
   }
 
-  if (!ville) {
+  if (!villeSelectionnee) {
     return (
       <div className="page-selection">
         <div className="conteneur">
@@ -112,7 +151,7 @@ export default function SelectionDestination({
         <div>
           <div className="titre-barre">PlanMyTrip</div>
           <div className="sous-barre">
-            Destination : <b>{ville.nom}</b> • {nbPersonnes} personne(s)
+            Destination : <b>{villeSelectionnee.nom}</b> • {nombreDePersonnes} personne(s)
           </div>
         </div>
 
@@ -120,62 +159,68 @@ export default function SelectionDestination({
           <button className="btn btn-secondaire" onClick={surRetourAccueil}>
             Retour
           </button>
-          <button className="btn btn-primaire" onClick={ouvrirRecap}>
-            Voir le récap
+          <button className="btn btn-primaire" onClick={ouvrirPageRecapitulatif}>
+            Voir le récap • {calculerTotalActuel()} $
           </button>
         </div>
       </header>
 
-      <section className="onglets-activite">
+      <section className="onglets-expedia">
         <button
-          className={`onglet ${ongletActif === "hebergements" ? "actif" : ""}`}
-          onClick={() => setOngletActif("hebergements")}
+          className={`onglet ${ongletActuel === "hebergements" ? "actif" : ""}`}
+          onClick={() => definirOngletActuel("hebergements")}
           type="button"
         >
-        Hébergements
+          Hébergements
         </button>
 
-
         <button
-          className={`onglet ${ongletActif === "activites" ? "actif" : ""}`}
-          onClick={() => setOngletActif("activites")}
+          className={`onglet ${ongletActuel === "activites" ? "actif" : ""}`}
+          onClick={() => definirOngletActuel("activites")}
           type="button"
         >
           Activités
         </button>
 
         <button
-          className={`onglet ${ongletActif === "transports" ? "actif" : ""}`}
-          onClick={() => setOngletActif("transports")}
+          className={`onglet ${ongletActuel === "transports" ? "actif" : ""}`}
+          onClick={() => definirOngletActuel("transports")}
           type="button"
         >
-         Transports
+          Transports
         </button>
       </section>
 
       <main className="conteneur">
-        {ongletActif === "hebergements" && (
+        {ongletActuel === "hebergements" && (
           <>
             <h2>Hébergements (du moins cher au plus cher)</h2>
             <div className="grille-cartes">
-              {hebergementsTries.map((h) => {
-                const estChoisi = hebergementId === h.id;
+              {listeHebergementsTries.map((hebergement) => {
+                const hebergementEstSelectionne =
+                  identifiantHebergementSelectionne === hebergement.id;
 
                 return (
-                  <article key={h.id} className="carte-element">
-                    <img className="image-element" src={h.image} alt={h.nom} />
+                  <article key={hebergement.id} className="carte-element">
+                    <img
+                      className="image-element"
+                      src={hebergement.image}
+                      alt={hebergement.nom}
+                    />
                     <div className="contenu-carte">
                       <div className="ligne-top">
-                        <div className="nom">{h.nom}</div>
-                        <div className="prix">{h.prix} $</div>
+                        <div className="nom">{hebergement.nom}</div>
+                        <div className="prix">{hebergement.prix} $</div>
                       </div>
-                      <div className="meta">{h.categorie}</div>
+                      <div className="meta">{hebergement.categorie}</div>
 
                       <div className="actions">
-                        {!estChoisi ? (
+                        {!hebergementEstSelectionne ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() => setHebergementId(h.id)}
+                            onClick={() =>
+                              definirHebergementSelectionne(hebergement.id)
+                            }
                             type="button"
                           >
                             Ajouter
@@ -183,7 +228,7 @@ export default function SelectionDestination({
                         ) : (
                           <button
                             className="btn btn-danger"
-                            onClick={() => setHebergementId(null)}
+                            onClick={() => definirHebergementSelectionne(null)}
                             type="button"
                           >
                             Retirer
@@ -198,28 +243,33 @@ export default function SelectionDestination({
           </>
         )}
 
-        {ongletActif === "activites" && (
+        {ongletActuel === "activites" && (
           <>
-            <h2>Activités (prix x {nbPersonnes} personne(s))</h2>
+            <h2>Activités (prix x {nombreDePersonnes} personne(s))</h2>
             <div className="grille-cartes">
-              {activites.map((a) => {
-                const estAjoutee = activitesIds.includes(a.id);
+              {listeActivitesDisponibles.map((activite) => {
+                const activiteEstSelectionnee =
+                  identifiantsActivitesSelectionnees.includes(activite.id);
 
                 return (
-                  <article key={a.id} className="carte-element">
-                    <img className="image-element" src={a.image} alt={a.nom} />
+                  <article key={activite.id} className="carte-element">
+                    <img
+                      className="image-element"
+                      src={activite.image}
+                      alt={activite.nom}
+                    />
                     <div className="contenu-carte">
                       <div className="ligne-top">
-                        <div className="nom">{a.nom}</div>
-                        <div className="prix">{a.prix} $</div>
+                        <div className="nom">{activite.nom}</div>
+                        <div className="prix">{activite.prix} $</div>
                       </div>
-                      <div className="meta">{a.categorie}</div>
+                      <div className="meta">{activite.categorie}</div>
 
                       <div className="actions">
-                        {!estAjoutee ? (
+                        {!activiteEstSelectionnee ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() => basculerActivite(a.id)}
+                            onClick={() => basculerSelectionActivite(activite.id)}
                             type="button"
                           >
                             Ajouter
@@ -227,7 +277,7 @@ export default function SelectionDestination({
                         ) : (
                           <button
                             className="btn btn-danger"
-                            onClick={() => basculerActivite(a.id)}
+                            onClick={() => basculerSelectionActivite(activite.id)}
                             type="button"
                           >
                             Retirer
@@ -242,28 +292,35 @@ export default function SelectionDestination({
           </>
         )}
 
-        {ongletActif === "transports" && (
+        {ongletActuel === "transports" && (
           <>
             <h2>Transports</h2>
             <div className="grille-cartes">
-              {transports.map((t) => {
-                const estChoisi = transportId === t.id;
+              {listeTransportsDisponibles.map((transport) => {
+                const transportEstSelectionne =
+                  identifiantTransportSelectionne === transport.id;
 
                 return (
-                  <article key={t.id} className="carte-element">
-                    <img className="image-element" src={t.image} alt={t.nom} />
+                  <article key={transport.id} className="carte-element">
+                    <img
+                      className="image-element"
+                      src={transport.image}
+                      alt={transport.nom}
+                    />
                     <div className="contenu-carte">
                       <div className="ligne-top">
-                        <div className="nom">{t.nom}</div>
-                        <div className="prix">{t.prix} $</div>
+                        <div className="nom">{transport.nom}</div>
+                        <div className="prix">{transport.prix} $</div>
                       </div>
-                      <div className="meta">{t.type}</div>
+                      <div className="meta">{transport.type}</div>
 
                       <div className="actions">
-                        {!estChoisi ? (
+                        {!transportEstSelectionne ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() => setTransportId(t.id)}
+                            onClick={() =>
+                              definirTransportSelectionne(transport.id)
+                            }
                             type="button"
                           >
                             Ajouter
@@ -271,7 +328,7 @@ export default function SelectionDestination({
                         ) : (
                           <button
                             className="btn btn-danger"
-                            onClick={() => setTransportId(null)}
+                            onClick={() => definirTransportSelectionne(null)}
                             type="button"
                           >
                             Retirer
