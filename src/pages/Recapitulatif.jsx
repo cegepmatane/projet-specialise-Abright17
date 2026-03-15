@@ -54,6 +54,29 @@ export default function Recapitulatif({
       .filter(Boolean);
   }, [villeSelectionnee, selection]);
 
+  const prixTotal = useMemo(() => {
+    let sommeTotale = 0;
+
+    if (hebergementSelectionne) {
+      sommeTotale += Number(hebergementSelectionne.prix) || 0;
+    }
+
+    if (transportSelectionne) {
+      sommeTotale += Number(transportSelectionne.prix) || 0;
+    }
+
+    for (const activite of activitesSelectionnees) {
+      sommeTotale += (Number(activite.prix) || 0) * nombrePersonnes;
+    }
+
+    return Math.round(sommeTotale * 100) / 100;
+  }, [
+    hebergementSelectionne,
+    transportSelectionne,
+    activitesSelectionnees,
+    nombrePersonnes,
+  ]);
+
   function retirerHebergement() {
     surMettreAJourSelection?.({
       ...selection,
@@ -126,7 +149,8 @@ export default function Recapitulatif({
                 <div className="meta">{hebergementSelectionne.categorie}</div>
               </div>
               <div className="droite">
-                <button className="btn btn-danger" onClick={retirerHebergement}>
+                <div className="prix">{hebergementSelectionne.prix} $</div>
+                <button className="btn btn-danger" onClick={retirerHebergement} type="button">
                   Retirer
                 </button>
               </div>
@@ -145,7 +169,8 @@ export default function Recapitulatif({
                 <div className="meta">{transportSelectionne.type}</div>
               </div>
               <div className="droite">
-                <button className="btn btn-danger" onClick={retirerTransport}>
+                <div className="prix">{transportSelectionne.prix} $</div>
+                <button className="btn btn-danger" onClick={retirerTransport} type="button">
                   Retirer
                 </button>
               </div>
@@ -162,12 +187,18 @@ export default function Recapitulatif({
               <div key={activite.id} className="ligne">
                 <div>
                   <div className="nom">{activite.nom}</div>
-                  <div className="meta">{activite.categorie}</div>
+                  <div className="meta">
+                    {activite.categorie} • {activite.prix} $ x {nombrePersonnes}
+                  </div>
                 </div>
                 <div className="droite">
+                  <div className="prix">
+                    {(Number(activite.prix) || 0) * nombrePersonnes} $
+                  </div>
                   <button
                     className="btn btn-danger"
                     onClick={() => retirerActivite(activite.id)}
+                    type="button"
                   >
                     Retirer
                   </button>
@@ -175,6 +206,11 @@ export default function Recapitulatif({
               </div>
             ))
           )}
+        </section>
+
+        <section className="total">
+          <div>Total</div>
+          <div className="montant">{prixTotal} $</div>
         </section>
       </main>
     </div>
