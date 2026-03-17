@@ -173,7 +173,7 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("hebergements")}
           type="button"
         >
-          🛏️ Hébergements
+          Hébergements
         </button>
 
         <button
@@ -181,7 +181,7 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("activites")}
           type="button"
         >
-          ✈️ Activités
+          Activités
         </button>
 
         <button
@@ -189,7 +189,7 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("transports")}
           type="button"
         >
-          🚗 Transports
+           Transports
         </button>
       </section>
 
