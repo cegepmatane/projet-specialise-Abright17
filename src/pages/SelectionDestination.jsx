@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import donnees from "../data/data.json";
 import "./SelectionDestination.css";
 
@@ -9,10 +9,32 @@ export default function SelectionDestination({
 }) {
   const [ongletActuel, definirOngletActuel] = useState("hebergements");
 
-  // Choix de l'utilisateur
-  const [identifiantHebergementSelectionne, definirHebergementSelectionne] = useState(null);
-  const [identifiantTransportSelectionne, definirTransportSelectionne] = useState(null);
-  const [identifiantsActivitesSelectionnees, definirActivitesSelectionnees] = useState([]);
+  const [identifiantHebergementSelectionne, definirHebergementSelectionne] =
+    useState(() => {
+      try {
+        return JSON.parse(localStorage.getItem("planmytrip_hebergement")) || null;
+      } catch {
+        return null;
+      }
+    });
+
+  const [identifiantTransportSelectionne, definirTransportSelectionne] =
+    useState(() => {
+      try {
+        return JSON.parse(localStorage.getItem("planmytrip_transport")) || null;
+      } catch {
+        return null;
+      }
+    });
+
+  const [identifiantsActivitesSelectionnees, definirActivitesSelectionnees] =
+    useState(() => {
+      try {
+        return JSON.parse(localStorage.getItem("planmytrip_activites")) || [];
+      } catch {
+        return [];
+      }
+    });
 
   const villeSelectionnee = useMemo(() => {
     const destinationRecherchee = String(recherche?.destination || "")
@@ -28,7 +50,8 @@ export default function SelectionDestination({
         (ville) => String(ville?.nom || "").toLowerCase() === destinationRecherchee
       ) ||
       listeDesVilles.find(
-        (ville) => String(ville?.nom || "").toLowerCase().includes(destinationRecherchee)
+        (ville) =>
+          String(ville?.nom || "").toLowerCase().includes(destinationRecherchee)
       ) ||
       null
     );
@@ -59,6 +82,68 @@ export default function SelectionDestination({
 
   const nombreDePersonnes = Number(recherche?.nbPersonnes) || 1;
   const nombreDeNuits = Number(recherche?.nbNuits) || 1;
+
+  useEffect(() => {
+    localStorage.setItem(
+      "planmytrip_hebergement",
+      JSON.stringify(identifiantHebergementSelectionne)
+    );
+  }, [identifiantHebergementSelectionne]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "planmytrip_transport",
+      JSON.stringify(identifiantTransportSelectionne)
+    );
+  }, [identifiantTransportSelectionne]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "planmytrip_activites",
+      JSON.stringify(identifiantsActivitesSelectionnees)
+    );
+  }, [identifiantsActivitesSelectionnees]);
+
+  useEffect(() => {
+    if (!villeSelectionnee) return;
+
+    const hebergementExisteEncore = listeHebergementsTries.some(
+      (hebergement) => hebergement.id === identifiantHebergementSelectionne
+    );
+
+    if (!hebergementExisteEncore && identifiantHebergementSelectionne !== null) {
+      definirHebergementSelectionne(null);
+    }
+
+    const transportExisteEncore = listeTransportsDisponibles.some(
+      (transport) => transport.id === identifiantTransportSelectionne
+    );
+
+    if (!transportExisteEncore && identifiantTransportSelectionne !== null) {
+      definirTransportSelectionne(null);
+    }
+
+    const activitesEncoreValides = identifiantsActivitesSelectionnees.filter(
+      (identifiantActivite) =>
+        listeActivitesDisponibles.some(
+          (activite) => activite.id === identifiantActivite
+        )
+    );
+
+    if (
+      activitesEncoreValides.length !== identifiantsActivitesSelectionnees.length
+    ) {
+      definirActivitesSelectionnees(activitesEncoreValides);
+    }
+  }, [
+    villeSelectionnee,
+    listeHebergementsTries,
+    listeTransportsDisponibles,
+    listeActivitesDisponibles,
+    identifiantHebergementSelectionne,
+    identifiantTransportSelectionne,
+    identifiantsActivitesSelectionnees,
+  ]);
 
   function basculerSelectionActivite(identifiantActivite) {
     definirActivitesSelectionnees((ancienneListeActivites) => {
@@ -107,14 +192,18 @@ export default function SelectionDestination({
   function ouvrirPageRecapitulatif() {
     if (!villeSelectionnee) return;
 
-    surVoirRecapitulatif?.({
+    const nouvelleSelection = {
       villeNom: villeSelectionnee.nom,
       nbPersonnes: nombreDePersonnes,
       nbNuits: nombreDeNuits,
       hebergementId: identifiantHebergementSelectionne,
       transportId: identifiantTransportSelectionne,
       activitesIds: identifiantsActivitesSelectionnees,
-    });
+    };
+
+    localStorage.setItem("planmytrip_selection", JSON.stringify(nouvelleSelection));
+
+    surVoirRecapitulatif?.(nouvelleSelection);
   }
 
   if (!recherche?.destination) {
@@ -138,7 +227,9 @@ export default function SelectionDestination({
           <p>
             Destination : <b>{recherche.destination}</b>
           </p>
-          <p>Vérifie que ta ville existe dans <code>data.json</code>.</p>
+          <p>
+            Vérifie que ta ville existe dans <code>data.json</code>.
+          </p>
           <button className="btn btn-secondaire" onClick={surRetourAccueil}>
             Retour à l’accueil
           </button>
@@ -153,7 +244,8 @@ export default function SelectionDestination({
         <div>
           <div className="titre-barre">PlanMyTrip</div>
           <div className="sous-barre">
-            Destination : <b>{villeSelectionnee.nom}</b> • {nombreDePersonnes} personne(s) • {nombreDeNuits} nuit(s)
+            Destination : <b>{villeSelectionnee.nom}</b> • {nombreDePersonnes} personne(s) •{" "}
+            {nombreDeNuits} nuit(s)
           </div>
         </div>
 
@@ -167,7 +259,7 @@ export default function SelectionDestination({
         </div>
       </header>
 
-      <section className="onglets-expedia">
+      <section className="onglets-activite">
         <button
           className={`onglet ${ongletActuel === "hebergements" ? "actif" : ""}`}
           onClick={() => definirOngletActuel("hebergements")}
@@ -189,7 +281,7 @@ export default function SelectionDestination({
           onClick={() => definirOngletActuel("transports")}
           type="button"
         >
-           Transports
+          Transports
         </button>
       </section>
 
@@ -219,14 +311,17 @@ export default function SelectionDestination({
                       </div>
 
                       <div className="meta">
-                        {hebergement.categorie} • Total hôtel : {(Number(hebergement.prix) || 0) * nombreDeNuits} $
+                        {hebergement.categorie} • Total hôtel :{" "}
+                        {(Number(hebergement.prix) || 0) * nombreDeNuits} $
                       </div>
 
                       <div className="actions">
                         {!hebergementEstSelectionne ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() => definirHebergementSelectionne(hebergement.id)}
+                            onClick={() =>
+                              definirHebergementSelectionne(hebergement.id)
+                            }
                             type="button"
                           >
                             Ajouter
@@ -330,7 +425,9 @@ export default function SelectionDestination({
                         {!transportEstSelectionne ? (
                           <button
                             className="btn btn-primaire"
-                            onClick={() => definirTransportSelectionne(transport.id)}
+                            onClick={() =>
+                              definirTransportSelectionne(transport.id)
+                            }
                             type="button"
                           >
                             Ajouter
