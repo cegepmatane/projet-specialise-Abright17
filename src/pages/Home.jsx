@@ -51,8 +51,8 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
       .slice(0, 8);
   }, []);
 
-  function gererSoumission(e) {
-    e.preventDefault();
+  function gererSoumission(evenement) {
+    evenement.preventDefault();
     const destinationPropre = destination.trim();
     if (!destinationPropre) return;
 
@@ -120,7 +120,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
               <input
                 className="input-champ"
                 value={destination}
-                onChange={(e) => setDestination(e.target.value)}
+                onChange={(evenement) => setDestination(evenement.target.value)}
                 placeholder="Ex: Matane, Rimouski..."
                 list="destinations"
                 required
@@ -135,7 +135,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
                 min="1"
                 max="12"
                 value={nbPersonnes}
-                onChange={(e) => setNbPersonnes(e.target.value)}
+                onChange={(evenement) => setNbPersonnes(evenement.target.value)}
                 required
               />
             </div>
@@ -261,7 +261,7 @@ export default function Accueil({ utilisateur, surDeconnexion, surRecherche }) {
       {/* DONNÉES JSON */}
       <section className="section">
         <div className="entete-section">
-          <h2 className="titre-section">Données chargées (data.json)</h2>
+          <h2 className="titre-section">Données chargées</h2>
           <p className="sous-titre-section">
             Aperçu des villes et des lieux disponibles (restaurants, hébergements,
             activités).
