@@ -31,7 +31,41 @@ export default function Wishlist() {
       </section>
 
       <div className="grille-cartes-principales">
-
+        {wishlist.length === 0 ? (
+          <article className="carte-vide">
+            <h2>Aucun favori pour le moment</h2>
+            <p>Ajoute des hébergements, activités, restaurants ou transports à partir des pages détails.</p>
+          </article>
+        ) : (
+          wishlist.map((element) => (
+            <article key={element.id} className="carte-element-voyage">
+              <img
+                className="carte-element-voyage__image"
+                src={element.image || creerImageSecours(element.nom)}
+                alt={element.nom}
+              />
+              <div className="carte-element-voyage__contenu">
+                <div className="carte-element-voyage__ligne">
+                  <h3>{element.nom}</h3>
+                  <strong>{element.prix} $</strong>
+                </div>
+                <p className="carte-element-voyage__categorie">{element.categorie || element.type || "Élément voyage"}</p>
+                <p className="carte-element-voyage__description">{element.description}</p>
+                <div className="groupe-boutons-actions groupe-boutons-actions--compact">
+                  <Link
+                    className="bouton-primaire"
+                    to={`/ville/${encodeURIComponent(element.villeNom || "")}/${element.categorieRoute || "hebergements"}/${element.id}`}
+                  >
+                    Voir les détails
+                  </Link>
+                  <button type="button" className="bouton-secondaire" onClick={() => retirerElement(element.id)}>
+                    Retirer
+                  </button>
+                </div>
+              </div>
+            </article>
+          ))
+        )}
       </div>
     </main>
   );
