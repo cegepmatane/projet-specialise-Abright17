@@ -40,6 +40,7 @@ export default function ListeCategorie() {
     if (triActuel === "prix-decroissant") {
       return [...resultat].sort((elementA, elementB) => Number(elementB.prix) - Number(elementA.prix));
     }
+
   return (
     <main className="page-contenu">
       <section className="entete-page-categorie entete-page-categorie--banniere">
@@ -59,6 +60,19 @@ export default function ListeCategorie() {
           filtrePrixMaximum={filtrePrixMaximum}
           definirFiltrePrixMaximum={definirFiltrePrixMaximum}
         />
+
+        <div className="grille-cartes-principales">
+          {elementsFiltres.length === 0 ? (
+            <article className="carte-vide">
+              <h2>Aucun résultat</h2>
+              <p>Modifie les filtres pour afficher plus d'options dans cette ville.</p>
+            </article>
+          ) : (
+            elementsFiltres.map((element) => (
+              <CarteElement key={element.id} nomVille={ville.nom} categorie={categorie} element={element} />
+            ))
+          )}
+        </div>
       </section>
     </main>
   );
