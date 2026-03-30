@@ -2,6 +2,9 @@ export default function FiltresElements({
   filtreTexte,
   definirFiltreTexte,
   triActuel,
+  definirTriActuel,
+  filtrePrixMaximum,
+  definirFiltrePrixMaximum,
 }) {
   return (
     <aside className="panneau-filtres">
@@ -15,6 +18,30 @@ export default function FiltresElements({
           onChange={(evenement) => definirFiltreTexte(evenement.target.value)}
           placeholder="Nom ou catégorie"
         />
+      </label>
+
+      <label className="champ-formulaire">
+        <span>Prix maximum</span>
+        <input
+          type="number"
+          min="0"
+          value={filtrePrixMaximum}
+          onChange={(evenement) => definirFiltrePrixMaximum(evenement.target.value)}
+          placeholder="Ex: 150"
+        />
+      </label>
+
+      <label className="champ-formulaire">
+        <span>Trier par</span>
+        <select
+          value={triActuel}
+          onChange={(evenement) => definirTriActuel(evenement.target.value)}
+        >
+          <option value="pertinence">Pertinence</option>
+          <option value="prix-croissant">Prix croissant</option>
+          <option value="prix-decroissant">Prix décroissant</option>
+          <option value="nom">Nom</option>
+        </select>
       </label>
     </aside>
   );
