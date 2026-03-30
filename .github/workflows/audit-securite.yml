@@ -2,7 +2,7 @@ name: Audit de sécurité
 
 on:
   schedule:
-    - cron: '0 10 * * 1'
+    - cron: '* * * * *'
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
           node-version: 20
 
       - name: Installer les dépendances
-        run: npm install
+        run: npm ci
 
       - name: Audit npm
         run: |
