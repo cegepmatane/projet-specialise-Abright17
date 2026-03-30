@@ -1,0 +1,34 @@
+name: Surveillance des releases
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  verifier-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Vérifier la dernière release
+        id: check
+        run: |
+          REPO="facebook/react"
+
+          RELEASE=$(curl -s "https://api.github.com/repos/$REPO/releases/latest")
+          VERSION=$(echo "$RELEASE" | jq -r '.tag_name')
+          URL=$(echo "$RELEASE" | jq -r '.html_url')
+
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "url=$URL" >> $GITHUB_OUTPUT
+
+      - name: Poster dans Discord
+        env:
+          WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          VERSION="${{ steps.check.outputs.version }}"
+          URL="${{ steps.check.outputs.url }}"
+
+          curl -H "Content-Type: application/json" \
+          -d "{\"content\":\"📦 **Release $VERSION**\n$URL\"}" \
+          "$WEBHOOK"
