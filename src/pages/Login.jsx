@@ -67,7 +67,29 @@ export default function Login() {
       (utilisateur) => utilisateur.email.toLowerCase() === courriel.trim().toLowerCase()
     );
 
+    if (courrielExiste) {
+      definirMessageErreur("Un compte existe déjà avec ce courriel.");
+      return;
+    }
 
+    const nouvelUtilisateur = {
+      id: `utilisateur-${Date.now()}`,
+      prenom: prenom.trim(),
+      nom: nom.trim(),
+      email: courriel.trim(),
+      motDePasse,
+    };
+
+    creerUtilisateurLocal(nouvelUtilisateur);
+
+    const resultatCourriel = envoyerCourrielBienvenue(nouvelUtilisateur);
+
+    definirMessageSucces(
+      resultatCourriel?.succes
+        ? "Compte créé avec succès. Un courriel de bienvenue a été préparé. Vous pouvez maintenant vous connecter."
+        : "Compte créé avec succès. Vous pouvez maintenant vous connecter."
+    );
+    definirModeCreationCompte(false);
     definirPrenom("");
     definirNom("");
     definirCourriel("");
@@ -137,6 +159,28 @@ export default function Login() {
             />
           </label>
 
+          <label className="champ-formulaire">
+            <span>Mot de passe</span>
+            <input
+              type="password"
+              value={motDePasse}
+              onChange={(evenement) => definirMotDePasse(evenement.target.value)}
+              placeholder="test123"
+              required
+            />
+          </label>
+
+          {modeCreationCompte ? (
+            <label className="champ-formulaire">
+              <span>Confirmer le mot de passe</span>
+              <input
+                type="password"
+                value={confirmationMotDePasse}
+                onChange={(evenement) => definirConfirmationMotDePasse(evenement.target.value)}
+                placeholder="test123"
+                required
+              />
+            </label>
           ) : null}
 
           {messageErreur ? <p className="message-erreur">{messageErreur}</p> : null}
@@ -146,6 +190,17 @@ export default function Login() {
             {modeCreationCompte ? "Créer mon compte" : "Se connecter"}
           </button>
 
+          <button
+            type="button"
+            className="bouton-secondaire bouton-largeur-complete"
+            onClick={() => {
+              definirModeCreationCompte(!modeCreationCompte);
+              definirMessageErreur("");
+              definirMessageSucces("");
+            }}
+          >
+            {modeCreationCompte ? "J'ai déjà un compte" : "Créer un compte"}
+          </button>
         </form>
       </section>
     </main>
