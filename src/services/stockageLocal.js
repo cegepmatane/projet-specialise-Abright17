@@ -39,4 +39,3 @@ function creerCleUtilisateur(suffixe) {
 
   return `planmytrip_${identifiantUtilisateur}_${suffixe}`;
 }
-
