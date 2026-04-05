@@ -1,6 +1,6 @@
 [
 {"nom":"react","repo":"facebook/react", "stars":244403,"forks":50891, "issues":1214},
 {"nom":"core","repo":"vuejs/core", "stars":53375,"forks":9080, "issues":970},
-{"nom":"svelte","repo":"sveltejs/svelte", "stars":86160,"forks":4844, "issues":980},
+{"nom":"svelte","repo":"sveltejs/svelte", "stars":86161,"forks":4844, "issues":981},
 {"nom":"angular","repo":"angular/angular", "stars":100097,"forks":27145, "issues":1130}
 ]
