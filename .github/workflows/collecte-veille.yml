@@ -60,8 +60,10 @@ jobs:
       - name: Collecter les flux RSS
         run: |
           # ===== MODIFIER VOS FLUX =====
-          FLUX1="https://react.dev/rss.xml"
-          FLUX2="https://leafletjs.com/atom.xml"
+          FLUX1="https://blog.openstreetmap.org/feed/"
+          FLUX2="https://www.reddit.com/r/reactjs/.rss"
+          FLUX3="https://github.com/Leaflet/Leaflet/releases.atom"
+          FLUX4="https://bg.raindrop.io/rss/public/67021087"
           # ================================
 
           echo '[]' > data/rss.json
