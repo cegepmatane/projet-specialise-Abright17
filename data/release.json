@@ -43,8 +43,8 @@
   "body": "## React Server Components\r\n\r\n- Add more DoS mitigations to Server Actions, and harden Server Components ([#35632](https://github.com/facebook/react/pull/35632) by @gnoff, @lubieowoce, @sebmarkbage, @unstubbable)",
   "reactions": {
     "url": "https://api.github.com/repos/facebook/react/releases/279999398/reactions",
-    "total_count": 132,
-    "+1": 65,
+    "total_count": 133,
+    "+1": 66,
     "-1": 0,
     "laugh": 10,
     "hooray": 16,
