@@ -8,23 +8,17 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
     <style>
-        /* ============================================
-           CONFIGURATION VISUELLE
-           ============================================ */
         :root {
             --c-fond: #0f0f0f;
             --c-surface: #1a1a1a;
-            --c-surface-hover: #222222;
             --c-bordure: #2a2a2a;
             --c-texte: #e4e4e7;
             --c-texte-secondaire: #a1a1aa;
             --c-accent: #10b981;
-            --c-accent-dim: rgba(16, 185, 129, 0.15);
             --c-orange: #f59e0b;
             --c-rouge: #ef4444;
             --c-bleu: #3b82f6;
             --c-violet: #8b5cf6;
-            --c-cyan: #06b6d4;
             --radius: 10px;
             --mono: 'JetBrains Mono', monospace;
             --sans: 'Source Sans 3', sans-serif;
@@ -39,9 +33,6 @@
             line-height: 1.5;
         }
 
-        /* ============================================
-           EN-TÊTE
-           ============================================ */
         .entete {
             padding: 2rem 2rem 1rem;
             border-bottom: 1px solid var(--c-bordure);
@@ -75,9 +66,6 @@
             color: var(--c-texte-secondaire);
         }
 
-        /* ============================================
-           GRILLE PRINCIPALE
-           ============================================ */
         .grille-principale {
             max-width: 1300px;
             margin: 1.5rem auto;
@@ -87,9 +75,6 @@
             gap: 1rem;
         }
 
-        /* ============================================
-           WIDGET GÉNÉRIQUE
-           ============================================ */
         .widget {
             background: var(--c-surface);
             border: 1px solid var(--c-bordure);
@@ -139,16 +124,12 @@
             font-size: 0.75rem;
         }
 
-        /* Tailles de grille */
         .w-3  { grid-column: span 3; }
         .w-4  { grid-column: span 4; }
         .w-6  { grid-column: span 6; }
         .w-8  { grid-column: span 8; }
         .w-12 { grid-column: span 12; }
 
-        /* ============================================
-           WIDGET — STATS RAPIDES (petites cartes)
-           ============================================ */
         .stat-icone {
             width: 32px;
             height: 32px;
@@ -164,12 +145,7 @@
         .stat-icone.bleu   { background: rgba(59, 130, 246, 0.15); color: var(--c-bleu); }
         .stat-icone.orange { background: rgba(245, 158, 11, 0.15); color: var(--c-orange); }
         .stat-icone.violet { background: rgba(139, 92, 246, 0.15); color: var(--c-violet); }
-        .stat-icone.cyan   { background: rgba(6, 182, 212, 0.15); color: var(--c-cyan); }
-        .stat-icone.rouge  { background: rgba(239, 68, 68, 0.15); color: var(--c-rouge); }
 
-        /* ============================================
-           WIDGET — GRAPHIQUE
-           ============================================ */
         .widget-graphique {
             position: relative;
             height: 220px;
@@ -180,9 +156,6 @@
             height: 100% !important;
         }
 
-        /* ============================================
-           WIDGET — LISTE (RSS, Issues)
-           ============================================ */
         .liste-item {
             padding: 0.6rem 0;
             border-bottom: 1px solid var(--c-bordure);
@@ -225,9 +198,6 @@
             white-space: nowrap;
         }
 
-        /* ============================================
-           WIDGET — COMPARAISON
-           ============================================ */
         .comparaison-ligne {
             display: flex;
             align-items: center;
@@ -238,7 +208,7 @@
         .comparaison-nom {
             font-family: var(--mono);
             font-size: 0.8rem;
-            width: 100px;
+            width: 110px;
             flex-shrink: 0;
         }
 
@@ -265,9 +235,6 @@
             flex-shrink: 0;
         }
 
-        /* ============================================
-           PIED
-           ============================================ */
         .pied {
             max-width: 1300px;
             margin: 2rem auto;
@@ -279,9 +246,6 @@
             border-top: 1px solid var(--c-bordure);
         }
 
-        /* ============================================
-           RESPONSIVE
-           ============================================ */
         @media (max-width: 900px) {
             .w-3, .w-4, .w-6, .w-8 { grid-column: span 6; }
         }
@@ -296,14 +260,13 @@
 
 <header class="entete">
     <div class="entete-contenu">
-        <h1 id="titre-projet">⏳ <span>Chargement...</span></h1>
-        <div class="entete-meta" id="derniere-maj"></div>
+        <h1 id="titre-projet">PlanMyTrip <span>— veille technologique</span></h1>
+        <div class="entete-meta" id="derniere-maj">Chargement...</div>
     </div>
 </header>
 
 <main class="grille-principale">
 
-    <!-- STATS RAPIDES -->
     <div class="widget w-3" id="widget-stars">
         <div class="stat-icone orange">⭐</div>
         <div class="widget-label">Stars</div>
@@ -329,7 +292,6 @@
         <div class="widget-sous-texte" id="release-date"></div>
     </div>
 
-    <!-- GRAPHIQUE — ACTIVITÉ DES COMMITS -->
     <div class="widget w-8">
         <div class="widget-label">Activité des commits (52 dernières semaines)</div>
         <div class="widget-graphique">
@@ -337,75 +299,38 @@
         </div>
     </div>
 
-    <!-- COMPARAISON DE POPULARITÉ -->
     <div class="widget w-4" id="widget-comparaison">
         <div class="widget-label">Comparaison — Stars GitHub</div>
         <div id="comparaison-contenu" class="widget-chargement">Chargement...</div>
     </div>
 
-    <!-- FLUX RSS COMBINÉ -->
     <div class="widget w-6" id="widget-rss">
         <div class="widget-label">Fil de nouvelles (RSS)</div>
         <div id="rss-contenu" class="widget-chargement">Chargement des flux...</div>
     </div>
 
-    <!-- ISSUES AUTOMATIQUES DU REPO ÉTUDIANT -->
     <div class="widget w-6" id="widget-issues-auto">
         <div class="widget-label">Issues automatiques — mon repo</div>
         <div id="issues-auto-contenu" class="widget-chargement">Chargement...</div>
     </div>
 
-    <!-- COMMUNAUTÉ — STACK OVERFLOW -->
-    <!-- SUPPRIMER CETTE BOÎTE SI NON PERTINENT -->
-    <div class="widget w-4" id="widget-stackoverflow">
-        <div class="stat-icone cyan">💬</div>
-        <div class="widget-label">Stack Overflow</div>
-        <div class="widget-valeur widget-chargement">...</div>
-        <div class="widget-sous-texte">questions tagguées</div>
-    </div>
-
-    <!-- NPM DOWNLOADS (si applicable) -->
-    <!-- SUPPRIMER CETTE BOÎTE SI NON PERTINENT -->
-    <div class="widget w-8" id="widget-npm">
-        <div class="widget-label">Téléchargements npm (6 derniers mois)</div>
-        <div class="widget-graphique">
-            <canvas id="graphique-npm"></canvas>
-        </div>
-    </div>
-
 </main>
 
 <footer class="pied">
-    <!-- TODO: Votre nom -->
-   Samuela Moussango — 420-663-MT Projet de spécialisation — Cégep de Matane — H2026
+    Samuela Moussango — 420-663-MT Projet de spécialisation — Cégep de Matane — H2026
 </footer>
 
 <script>
-/* ======================================================
-   CONFIGURATION — L'ÉTUDIANT MODIFIE CETTE SECTION
-   ====================================================== */
 let CONFIG = {
     nomProjet: "PlanMyTrip",
-    repoTechno: "facebook/react",
-    monRepo: "Abright17/projet-specialise-Abright17",
-
-    comparaison: [
-        { nom: "React", repo: "facebook/react" },
-        { nom: "Vue", repo: "vuejs/core" },
-        { nom: "Svelte", repo: "sveltejs/svelte" },
-        { nom: "Angular", repo: "angular/angular" }
-    ],
-
-    packageNpm: "react",
-    tagStackOverflow: "reactjs",
-
+    monRepo: "cegepmatane/projet-specialise-Abright17",
     fluxRss: [
         {
-            nom: "Reddit",
+            nom: "Reddit React",
             url: "https://www.reddit.com/r/reactjs/.rss"
         },
         {
-            nom: "Releases GitHub",
+            nom: "Releases React",
             url: "https://github.com/facebook/react/releases.atom"
         },
         {
@@ -413,82 +338,82 @@ let CONFIG = {
             url: "https://bg.raindrop.io/rss/public/67021087"
         }
     ],
-
     couleurs: {
         principal: "#10b981",
-        secondaire: "#3b82f6",
         comparaison: ["#10b981", "#f59e0b", "#8b5cf6", "#06b6d4", "#ef4444"]
     }
 };
 
-/* ======================================================
-   CODE DU DASHBOARD — NE PAS MODIFIER SOUS CETTE LIGNE
-   (sauf si vous savez ce que vous faites)
-   ====================================================== */
-
-// --- Utilitaires ---
 function formaterNombre(nombre) {
+    if (typeof nombre !== "number") return "0";
     if (nombre >= 1000000) return (nombre / 1000000).toFixed(1) + "M";
     if (nombre >= 1000) return (nombre / 1000).toFixed(1) + "k";
     return nombre.toString();
 }
 
 function formaterDate(dateStr) {
+    if (!dateStr) return "";
     let date = new Date(dateStr);
+    if (isNaN(date.getTime())) return "";
     return date.toLocaleDateString("fr-CA", { year: "numeric", month: "short", day: "numeric" });
+}
+
+async function lireJson(fichier) {
+    let reponse = await fetch(fichier);
+    if (!reponse.ok) {
+        throw new Error("Impossible de charger " + fichier);
+    }
+    return await reponse.json();
 }
 
 function afficherErreur(elementId, message) {
     let element = document.getElementById(elementId);
-    if (element) {
-        let cible = element.querySelector(".widget-valeur") || element.querySelector(".widget-chargement");
-        if (cible) {
-            cible.textContent = message;
-            cible.classList.add("widget-erreur");
-        }
+    if (!element) return;
+    let cible = element.querySelector(".widget-valeur") || element.querySelector(".widget-chargement");
+    if (cible) {
+        cible.textContent = message;
+        cible.classList.add("widget-erreur");
     }
 }
 
-// --- Initialisation de l'en-tête ---
-function initialiserEntete() {
-    document.getElementById("titre-projet").innerHTML =
-        CONFIG.nomProjet + " <span>— veille technologique</span>";
-    document.title = "Veille — " + CONFIG.nomProjet;
-    document.getElementById("derniere-maj").textContent =
-        "Dernière visite : " + new Date().toLocaleString("fr-CA");
+async function chargerMeta() {
+    try {
+        let data = await lireJson("data/meta.json");
+        let texte = data.derniere_maj
+            ? "Dernière mise à jour : " + new Date(data.derniere_maj).toLocaleString("fr-CA")
+            : "Dernière mise à jour inconnue";
+        document.getElementById("derniere-maj").textContent = texte;
+    } catch (erreur) {
+        document.getElementById("derniere-maj").textContent = "Dernière mise à jour indisponible";
+    }
 }
 
-// --- Fetch GitHub : stats du repo techno ---
 async function chargerStatsTechno() {
     try {
-        let reponse = await fetch("https://api.github.com/repos/" + CONFIG.repoTechno);
-        let data = await reponse.json();
+        let data = await lireJson("data/techno-stats.json");
 
-        // Stars
         let widgetStars = document.querySelector("#widget-stars .widget-valeur");
-        widgetStars.textContent = formaterNombre(data.stargazers_count);
+        widgetStars.textContent = formaterNombre(data.stargazers_count || 0);
         widgetStars.classList.remove("widget-chargement");
 
-        // Forks
         let widgetForks = document.querySelector("#widget-forks .widget-valeur");
-        widgetForks.textContent = formaterNombre(data.forks_count);
+        widgetForks.textContent = formaterNombre(data.forks_count || 0);
         widgetForks.classList.remove("widget-chargement");
 
-        // Issues ouvertes
         let widgetIssues = document.querySelector("#widget-issues .widget-valeur");
-        widgetIssues.textContent = formaterNombre(data.open_issues_count);
+        widgetIssues.textContent = formaterNombre(data.open_issues_count || 0);
         widgetIssues.classList.remove("widget-chargement");
     } catch (erreur) {
-        afficherErreur("widget-stars", "Erreur API");
-        console.error("Erreur stats techno:", erreur);
+        afficherErreur("widget-stars", "Erreur data");
+        afficherErreur("widget-forks", "Erreur data");
+        afficherErreur("widget-issues", "Erreur data");
+        console.error(erreur);
     }
 }
 
-// --- Fetch GitHub : dernière release ---
 async function chargerDerniereRelease() {
     try {
-        let reponse = await fetch("https://api.github.com/repos/" + CONFIG.repoTechno + "/releases/latest");
-        let data = await reponse.json();
+        let data = await lireJson("data/release.json");
 
         let widgetRelease = document.querySelector("#widget-release .widget-valeur");
         widgetRelease.textContent = data.tag_name || "Aucune";
@@ -501,19 +426,12 @@ async function chargerDerniereRelease() {
     }
 }
 
-// --- Fetch GitHub : activité des commits (52 semaines) ---
 async function chargerGraphiqueCommits() {
     try {
-        let reponse = await fetch("https://api.github.com/repos/" + CONFIG.repoTechno + "/stats/participation");
-        let data = await reponse.json();
+        let data = await lireJson("data/commits.json");
+        let tableau = data.all || [];
 
-        if (!data.all) {
-            // L'API GitHub retourne parfois 202 (calcul en cours)
-            setTimeout(chargerGraphiqueCommits, 3000);
-            return;
-        }
-
-        let labels = data.all.map(function(valeur, index) {
+        let labels = tableau.map(function(valeur, index) {
             return index % 4 === 0 ? "S" + (index + 1) : "";
         });
 
@@ -522,7 +440,7 @@ async function chargerGraphiqueCommits() {
             data: {
                 labels: labels,
                 datasets: [{
-                    data: data.all,
+                    data: tableau,
                     backgroundColor: CONFIG.couleurs.principal + "40",
                     borderColor: CONFIG.couleurs.principal,
                     borderWidth: 1,
@@ -550,29 +468,24 @@ async function chargerGraphiqueCommits() {
     }
 }
 
-// --- Fetch GitHub : comparaison de stars ---
 async function chargerComparaison() {
     let contenu = document.getElementById("comparaison-contenu");
     try {
-        let resultats = [];
-        for (let item of CONFIG.comparaison) {
-            let reponse = await fetch("https://api.github.com/repos/" + item.repo);
-            let data = await reponse.json();
-            resultats.push({ nom: item.nom, stars: data.stargazers_count || 0 });
-        }
+        let resultats = await lireJson("data/comparaison.json");
 
-        let maxStars = Math.max(...resultats.map(function(r) { return r.stars; }));
+        let maxStars = Math.max(...resultats.map(function(r) { return r.stars || 0; }), 1);
         let html = "";
 
         resultats.forEach(function(r, index) {
-            let pourcentage = (r.stars / maxStars * 100).toFixed(0);
+            let pourcentage = ((r.stars || 0) / maxStars * 100).toFixed(0);
             let couleur = CONFIG.couleurs.comparaison[index % CONFIG.couleurs.comparaison.length];
+
             html += '<div class="comparaison-ligne">'
-                + '<span class="comparaison-nom">' + r.nom + '</span>'
+                + '<span class="comparaison-nom">' + (r.nom || "N/A") + '</span>'
                 + '<div class="comparaison-barre-fond">'
                 + '<div class="comparaison-barre" style="width:' + pourcentage + '%;background:' + couleur + '"></div>'
                 + '</div>'
-                + '<span class="comparaison-valeur">' + formaterNombre(r.stars) + '</span>'
+                + '<span class="comparaison-valeur">' + formaterNombre(r.stars || 0) + '</span>'
                 + '</div>';
         });
 
@@ -582,7 +495,6 @@ async function chargerComparaison() {
     }
 }
 
-// --- Fetch RSS via proxy CORS ---
 async function chargerFluxRss() {
     let contenu = document.getElementById("rss-contenu");
 
@@ -602,9 +514,7 @@ async function chargerFluxRss() {
                 let parser = new DOMParser();
                 let xml = parser.parseFromString(texte, "text/xml");
 
-                // RSS 2.0
                 let items = xml.querySelectorAll("item");
-                // Atom
                 if (items.length === 0) items = xml.querySelectorAll("entry");
 
                 items.forEach(function(item, index) {
@@ -633,12 +543,10 @@ async function chargerFluxRss() {
             }
         }
 
-        // Trier par date décroissante
         tousLesArticles.sort(function(a, b) {
             return new Date(b.date) - new Date(a.date);
         });
 
-        // Afficher les 8 plus récents
         let html = "";
         tousLesArticles.slice(0, 8).forEach(function(article) {
             html += '<div class="liste-item">'
@@ -653,12 +561,11 @@ async function chargerFluxRss() {
     }
 }
 
-// --- Fetch GitHub : Issues auto-créées du repo étudiant ---
 async function chargerIssuesAuto() {
     let contenu = document.getElementById("issues-auto-contenu");
 
-    if (!CONFIG.monRepo || CONFIG.monRepo === "username/mon-projet") {
-        contenu.innerHTML = '<span class="widget-erreur">Configurez monRepo dans CONFIG</span>';
+    if (!CONFIG.monRepo) {
+        contenu.innerHTML = '<span class="widget-erreur">Repo non configuré</span>';
         return;
     }
 
@@ -673,7 +580,6 @@ async function chargerIssuesAuto() {
 
         let html = "";
         issues.forEach(function(issue) {
-            // Ignorer les PR (GitHub retourne les PR dans /issues aussi)
             if (issue.pull_request) return;
 
             html += '<div class="liste-item">'
@@ -688,106 +594,13 @@ async function chargerIssuesAuto() {
     }
 }
 
-// --- Fetch Stack Overflow ---
-
-// --- Fetch npm downloads ---
-async function chargerNpmDownloads() {
-    let widget = document.getElementById("widget-npm");
-
-    if (!CONFIG.packageNpm) {
-        widget.style.display = "none";
-        return;
-    }
-
-    try {
-        // 6 derniers mois, par semaine
-        let finDate = new Date();
-        let debutDate = new Date();
-        debutDate.setMonth(debutDate.getMonth() - 6);
-
-        let debut = debutDate.toISOString().split("T")[0];
-        let fin = finDate.toISOString().split("T")[0];
-
-        let reponse = await fetch("https://api.npmjs.org/downloads/range/" + debut + ":" + fin + "/" + CONFIG.packageNpm);
-        let data = await reponse.json();
-
-        if (!data.downloads) {
-            widget.style.display = "none";
-            return;
-        }
-
-        // Agréger par semaine
-        let parSemaine = [];
-        let labels = [];
-        let somme = 0;
-        let compteur = 0;
-
-        data.downloads.forEach(function(jour, index) {
-            somme += jour.downloads;
-            compteur++;
-
-            if (compteur === 7 || index === data.downloads.length - 1) {
-                parSemaine.push(somme);
-                labels.push(formaterDate(jour.day));
-                somme = 0;
-                compteur = 0;
-            }
-        });
-
-        new Chart(document.getElementById("graphique-npm"), {
-            type: "line",
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: parSemaine,
-                    borderColor: CONFIG.couleurs.secondaire,
-                    backgroundColor: CONFIG.couleurs.secondaire + "20",
-                    fill: true,
-                    tension: 0.3,
-                    pointRadius: 0,
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: {
-                        grid: { color: "#2a2a2a" },
-                        ticks: {
-                            color: "#71717a",
-                            font: { family: "JetBrains Mono", size: 9 },
-                            maxTicksLimit: 6
-                        }
-                    },
-                    y: {
-                        grid: { color: "#2a2a2a" },
-                        ticks: {
-                            color: "#71717a",
-                            font: { family: "JetBrains Mono", size: 9 },
-                            callback: function(valeur) { return formaterNombre(valeur); }
-                        }
-                    }
-                }
-            }
-        });
-    } catch (erreur) {
-        widget.style.display = "none";
-        console.error("Erreur npm:", erreur);
-    }
-}
-
-// --- Lancement ---
-initialiserEntete();
+chargerMeta();
 chargerStatsTechno();
 chargerDerniereRelease();
 chargerGraphiqueCommits();
 chargerComparaison();
 chargerFluxRss();
 chargerIssuesAuto();
-chargerStackOverflow();
-chargerNpmDownloads();
 </script>
 
 </body>
