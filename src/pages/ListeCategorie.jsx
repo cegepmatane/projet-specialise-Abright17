@@ -41,6 +41,17 @@ export default function ListeCategorie() {
       return [...resultat].sort((elementA, elementB) => Number(elementB.prix) - Number(elementA.prix));
     }
 
+    if (triActuel === "nom") {
+      return [...resultat].sort((elementA, elementB) => elementA.nom.localeCompare(elementB.nom));
+    }
+
+    return resultat;
+  }, [elements, filtrePrixMaximum, filtreTexte, triActuel]);
+
+  if (!ville) {
+    return <main className="page-contenu"><h1>Ville introuvable</h1></main>;
+  }
+
   return (
     <main className="page-contenu">
       <section className="entete-page-categorie entete-page-categorie--banniere">
