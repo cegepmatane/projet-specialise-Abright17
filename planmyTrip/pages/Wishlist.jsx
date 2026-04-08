@@ -26,7 +26,7 @@ export default function Wishlist() {
       <section className="entete-page-categorie">
         <div>
           <p className="sur-ligne">Tes favoris</p>
-          <h1>Wishlist</h1>
+          <h1>Coups de coeur</h1>
         </div>
       </section>
 

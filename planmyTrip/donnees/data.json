@@ -1,0 +1,387 @@
+{
+  "villes": [
+    {
+      "id": "matane",
+      "nom": "Matane",
+      "description": "Entre fleuve, gastronomie locale et promenades relaxantes, Matane propose un séjour doux et inspirant.",
+      "imageHero": "/images/matane.jpeg",
+      "hebergements": [
+        {
+          "id": "mat-heb-1",
+          "nom": "Riôtel Matane",
+          "categorie": "Hôtel",
+          "prix": 150,
+          "image": "/images/riotel.jpg",
+          "description": "Hôtel lumineux au bord de l'eau avec ambiance chic et accès facile aux points d'intérêt.",
+          "adresse": "250 avenue du Phare Est, Matane",
+          "lat": 48.85336499845497,
+          "lng": -67.52561361873343
+        },
+        {
+          "id": "mat-heb-2",
+          "nom": "Auberge du Port",
+          "categorie": "Auberge",
+          "prix": 115,
+          "image": "/images/aubergePort.jpg",
+          "description": "Une auberge chaleureuse, parfaite pour un séjour calme avec une touche locale.",
+          "adresse": "40 Chem. Principal, Cap-aux-Meules, QC G4T 1B9",
+          "lat": 47.38679348700917,
+          "lng": -61.858057654646935
+        },
+        {
+          "id": "mat-heb-3",
+          "nom": "Motel Central",
+          "categorie": "Motel",
+          "prix": 89,
+          "image": "/images/motelMatane.jpg",
+          "description": "Un choix accessible et pratique pour les voyageurs qui veulent optimiser leur budget.",
+          "adresse": "9548 Bd Sainte-Anne, Sainte-Anne-de-Beaupré, QC G0A 3C0",
+          "lat": 47.01805484125884,
+          "lng": -70.93873671994831
+        }
+      ],
+      "activites": [
+        {
+          "id": "mat-act-1",
+          "nom": "Parc des Îles",
+          "categorie": "Parc",
+          "prix": 8,
+          "image": "/images/Matane_Iles.jpg",
+          "description": "Promenade détente, vue agréable et atmosphère paisible pour une sortie nature.",
+          "adresse": "Secteur du fleuve à Matane",
+          "lat": 49.135978930641166,
+          "lng": -67.52936754031143
+        },
+        {
+          "id": "mat-act-2",
+          "nom": "Balade du phare",
+          "categorie": "Découverte",
+          "prix": 12,
+          "image": "/images/phare.webp",
+          "description": "Un parcours photogénique avec un panorama parfait pour une sortie en couple ou entre amis.",
+          "adresse": "Secteur du phare",
+          "lat": 48.85154105306837,
+          "lng": -67.53214480042968
+        },
+        {
+          "id": "mat-act-3",
+          "nom": "Visite gourmande locale",
+          "categorie": "Gastronomie",
+          "prix": 18,
+          "image": "/images/gourmande.jpg",
+          "description": "Une activité savoureuse pour découvrir quelques saveurs locales et artisanales.",
+          "adresse": "Centre-ville de Matane",
+          "lat": 48.84074746106847,
+          "lng": -67.49742427350874
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "mat-res-1",
+          "nom": "Restaurant Cargo",
+          "categorie": "Restaurant",
+          "prix": 24,
+          "image": "/images/cargo.jpg",
+          "description": "Cuisine chaleureuse, ambiance élégante et belle vue sur l'eau.",
+          "adresse": "250 Av. du Phare E, Matane, QC G4W 0B1",
+          "lat": 48.853784282135365,
+          "lng": -67.5255687382162
+        },
+        {
+          "id": "mat-res-2",
+          "nom": "Borealis Matane",
+          "categorie": "Restaurant",
+          "prix": 32,
+          "image": "/images/boreal.jpg",
+          "description": "Une table soignée qui met en valeur des produits du terroir.",
+          "adresse": "985 Av. du Phare O, Matane, QC G4W 3M6",
+          "lat": 48.84939254523191,
+          "lng": -67.54962902401365
+        }
+      ],
+      "transports": [
+        {
+          "id": "mat-tr-1",
+          "nom": "Location voiture",
+          "type": "Voiture",
+          "prix": 65,
+          "image": "/images/locationVoiture.jpg",
+          "description": "Un bon choix pour explorer la région à ton rythme.",
+          "adresse": "Agence locale",
+          "lat": 48.8546,
+          "lng": -67.5316
+        },
+        {
+          "id": "mat-tr-2",
+          "nom": "Taxi Matane",
+          "type": "Taxi",
+          "prix": 18,
+          "image": "/images/taxi.jpg",
+          "description": "Solution rapide pour les déplacements urbains.",
+          "adresse": "Matane",
+          "lat": 48.8515,
+          "lng": -67.5321
+        },
+        {
+          "id": "mat-tr-3",
+          "nom": "Transport de la Matanie",
+          "type": "Bus",
+          "prix": 4,
+          "image": "/images/autobus.png",
+          "description": "Le transport public le plus économique pour circuler dans la ville.",
+          "adresse": "Réseau urbain",
+          "lat": 48.8509,
+          "lng": -67.5299
+        }
+      ]
+    },
+    {
+      "id": "rimouski",
+      "nom": "Rimouski",
+      "description": "Une destination dynamique entre culture, bord de mer et découvertes familiales.",
+      "imageHero": "/images/rimouski.jpeg",
+      "hebergements": [
+        {
+          "id": "rim-heb-1",
+          "nom": "Hôtel Rimouski",
+          "categorie": "Hôtel",
+          "prix": 165,
+          "image": "/images/hotel.jpeg",
+          "description": "Hôtel confortable pour un séjour urbain élégant.",
+          "adresse": "225 Bd René Lepage E, Rimouski, QC G5L 1P2",
+          "lat": 48.50784358703653,
+          "lng": -68.57391607745829
+        },
+        {
+          "id": "rim-heb-2",
+          "nom": "Auberge de la Vieille Maison",
+          "categorie": "Auberge",
+          "prix": 120,
+          "image": "/images/auberge.webp",
+          "description": "Auberge de charme pour une expérience plus intimiste.",
+          "adresse": "35 Rue St Germain E, Rimouski, QC G5L 1A3",
+          "lat": 48.45232987838818,
+          "lng": -68.52365714886042
+        }
+      ],
+      "activites": [
+        {
+          "id": "rim-act-1",
+          "nom": "Pointe-au-Père",
+          "categorie": "Musée",
+          "prix": 18,
+          "image": "/images/musee.jpg",
+          "description": "Découvre un site historique maritime très apprécié.",
+          "adresse": "Pointe-au-Père, Rimouski",
+          "lat": 48.5023,
+          "lng": -68.4696
+        },
+        {
+          "id": "rim-act-2",
+          "nom": "Parc Beauséjour",
+          "categorie": "Parc",
+          "prix": 6,
+          "image": "/images/parc.jpg",
+          "description": "Un espace vert agréable pour relaxer en famille.",
+          "adresse": "400 Bd de la Rivière, Rimouski, QC G5L 4K1",
+          "lat": 48.439820601363344,
+          "lng": -68.53652016887452
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "rim-res-1",
+          "nom": "Maison du Port",
+          "categorie": "Restaurant",
+          "prix": 28,
+          "image": "/images/port.jpg",
+          "description": "Une table raffinée au style maritime.",
+          "adresse": "Port de Rimouski",
+          "lat": 48.47895455983745,
+          "lng": -68.51121843054287
+        },
+        {
+          "id": "rim-res-2",
+          "nom": "Le Quartier Gourmand",
+          "categorie": "Bistro",
+          "prix": 22,
+          "image": "/images/bistro.jpeg",
+          "description": "Cuisine simple et soignée dans un décor contemporain.",
+          "adresse": "1791 Rue Principale, Sainte-Julie, QC J3E 1W7",
+          "lat": 45.59199655163942,
+          "lng": -73.34233665594557
+        }
+      ],
+      "transports": [
+        {
+          "id": "rim-tr-1",
+          "nom": "Location voiture",
+          "type": "Voiture",
+          "prix": 75,
+          "image": "/images/locationVoiture.jpg",
+          "description": "Un véhicule pour parcourir la région en toute liberté.",
+          "adresse": "Agence locale, Rimouski",
+          "lat": 48.4488,
+          "lng": -68.5221
+        },
+        {
+          "id": "rim-tr-2",
+          "nom": "Taxi Rimouski",
+          "type": "/images/taxi.jpg",
+          "prix": 20,
+          "image": "tax",
+          "description": "Déplacements rapides et confortables dans la ville.",
+          "adresse": "Rimouski",
+          "lat": 48.449,
+          "lng": -68.5217
+        }
+      ]
+    },
+    {
+      "id": "quebec",
+      "nom": "Québec",
+      "description": "Ville historique et élégante, Québec combine patrimoine, panoramas grandioses et expériences culturelles mémorables.",
+      "imageHero": "/images/quebec-vieux-quebec.jpg",
+      "hebergements": [
+        {
+          "id": "que-heb-1",
+          "nom": "Fairmont Le Château Frontenac",
+          "categorie": "Hôtel",
+          "prix": 320,
+          "image": "/images/chateau-frontenac.avif",
+          "description": "Un hôtel emblématique offrant une expérience haut de gamme au cœur du Vieux-Québec.",
+          "adresse": "1 rue des Carrières, Québec",
+          "lat": 46.8126835671941,
+          "lng": -71.20526135506671
+        },
+        {
+          "id": "que-heb-2",
+          "nom": "Hôtel Manoir Victoria",
+          "categorie": "Hôtel",
+          "prix": 210,
+          "image": "/images/manoir-victoria.jpg",
+          "description": "Un hôtel raffiné idéalement situé pour découvrir le centre historique à pied.",
+          "adresse": "44 Côte du Palais, Québec",
+          "lat": 46.81484987278303,
+          "lng": -71.21080003972398
+        },
+        {
+          "id": "que-heb-3",
+          "nom": "Auberge Saint-Antoine",
+          "categorie": "Auberge",
+          "prix": 260,
+          "image": "/images/auberge-saint-antoine.jpg",
+          "description": "Une auberge de prestige dans le Vieux-Port, parfaite pour un séjour romantique et culturel.",
+          "adresse": "8 rue Saint-Antoine, Québec",
+          "lat": 46.814996428955205,
+          "lng": -71.20227857040595
+        }
+      ],
+      "activites": [
+        {
+          "id": "que-act-1",
+          "nom": "Vieux-Québec et Château Frontenac",
+          "categorie": "Patrimoine",
+          "prix": 0,
+          "image": "/images/vieux-quebec.webp",
+          "description": "Une balade incontournable dans les rues historiques avec vue sur l’un des monuments les plus célèbres du Québec.",
+          "adresse": "Vieux-Québec",
+          "lat": 46.8123,
+          "lng": -71.2065
+        },
+        {
+          "id": "que-act-2",
+          "nom": "Chute Montmorency",
+          "categorie": "Nature",
+          "prix": 15,
+          "image": "/images/chute-montmorency.jpg",
+          "description": "Un site naturel spectaculaire plus haut que Niagara, avec passerelle, belvédères et vues impressionnantes.",
+          "adresse": "5300 boulevard Sainte-Anne, Québec",
+          "lat": 46.900484229487525,
+          "lng": -71.14615782080564
+        },
+        {
+          "id": "que-act-3",
+          "nom": "Quartier Petit-Champlain",
+          "categorie": "Découverte",
+          "prix": 0,
+          "image": "/images/petit-champlain.jpg",
+          "description": "Un quartier charmant et photogénique, réputé pour ses rues pittoresques, ses boutiques et son ambiance européenne.",
+          "adresse": "Rue du Petit-Champlain, Québec",
+          "lat": 46.812488583085646,
+          "lng": -71.20393475392733
+        }
+      ],
+      "restaurants": [
+        {
+          "id": "que-res-1",
+          "nom": "Le Continental",
+          "categorie": "Restaurant",
+          "prix": 48,
+          "image": "/images/le-continental.webp",
+          "description": "Une adresse élégante du Vieux-Québec, reconnue pour son service classique et son ambiance raffinée.",
+          "adresse": "26 rue Saint-Louis, Québec",
+          "lat": 46.81237197319068,
+          "lng": -71.20688630904392
+        },
+        {
+          "id": "que-res-2",
+          "nom": "Chez Boulay – Bistro Boréal",
+          "categorie": "Bistro",
+          "prix": 42,
+          "image": "/images/chez-boulay.png",
+          "description": "Une cuisine inspirée du terroir nordique québécois dans un décor moderne et chaleureux.",
+          "adresse": "1110 rue Saint-Jean, Québec",
+          "lat": 46.814513724391325,
+          "lng": -71.2107221090424
+        },
+        {
+          "id": "que-res-3",
+          "nom": "Cochon Dingue Grande Allée",
+          "categorie": "Brasserie",
+          "prix": 26,
+          "image": "/images/cochon-dingue.jpg",
+          "description": "Un endroit populaire pour un repas décontracté avec une ambiance vivante et un décor soigné.",
+          "adresse": "46 boulevard René-Lévesque Ouest, Québec",
+          "lat": 46.80562515853795,
+          "lng": -71.21701137836679
+        }
+      ],
+      "transports": [
+        {
+          "id": "que-tr-1",
+          "nom": "RTC Québec",
+          "type": "Bus",
+          "prix": 3.75,
+          "image": "/images/rtc-quebec.jpeg",
+          "description": "Le réseau d’autobus de Québec, pratique pour circuler entre les quartiers et les sites touristiques.",
+          "adresse": "Québec",
+          "lat": 46.8139,
+          "lng": -71.208
+        },
+        {
+          "id": "que-tr-2",
+          "nom": "Taxi Coop Québec",
+          "type": "Taxi",
+          "prix": 22,
+          "image": "/images/taxi-quebec.png",
+          "description": "Une solution rapide et flexible pour les déplacements urbains.",
+          "adresse": "Québec",
+          "lat": 46.812,
+          "lng": -71.214
+        },
+        {
+          "id": "que-tr-3",
+          "nom": "Location voiture Québec",
+          "type": "Voiture",
+          "prix": 85,
+          "image": "/images/locationVoiture.jpg",
+          "description": "Une bonne option pour explorer Québec et ses environs à ton rythme.",
+          "adresse": "Centre-ville de Québec",
+          "lat": 46.8105,
+          "lng": -71.2172
+        }
+      ]
+    }
+  ]
+}

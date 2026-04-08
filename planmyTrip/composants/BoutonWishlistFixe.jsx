@@ -16,7 +16,7 @@ export default function BoutonWishlistFixe() {
 
   return (
     <Link to="/wishlist" className="bouton-wishlist-fixe">
-       Wishlist ({wishlist.length})
+      ❤ Wishlist ({wishlist.length})
     </Link>
   );
 }

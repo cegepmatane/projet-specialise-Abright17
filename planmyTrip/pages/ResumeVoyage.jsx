@@ -53,10 +53,6 @@ export default function ResumeVoyage() {
     definirResumeVoyage(nouveauResume);
   }
 
-  function passerAuPaiement() {
-    navigate("/paiement");
-  }
-
   function telechargerResumePdf() {
     const documentPdf = new jsPDF();
     let hauteurCourante = 20;
@@ -113,7 +109,7 @@ export default function ResumeVoyage() {
         {resumeVoyage.hebergement ? (
           <LigneResume
             titre={resumeVoyage.hebergement.nom}
-            description={`${resumeVoyage.hebergement.categorie} • ${resumeVoyage.hebergement.prix} $ par nuit`}
+            description={`${resumeVoyage.hebergement.categorie} . ${resumeVoyage.hebergement.prix} $ par nuit`}
             prix={`${((Number(resumeVoyage.hebergement.prix) || 0) * (Number(resumeVoyage.nombreDeNuits) || 1)).toFixed(2)} $`}
             onRetirer={() => mettreAJourResume({ ...resumeVoyage, hebergement: null })}
           />
@@ -132,7 +128,7 @@ export default function ResumeVoyage() {
           <LigneResume
             key={activite.id}
             titre={activite.nom}
-            description={`${activite.categorie} • ${resumeVoyage.nombreDePersonnes || 1} personne(s)`}
+            description={`${activite.categorie} . ${resumeVoyage.nombreDePersonnes || 1} personne(s)`}
             prix={`${((Number(activite.prix) || 0) * (Number(resumeVoyage.nombreDePersonnes) || 1)).toFixed(2)} $`}
             onRetirer={() =>
               mettreAJourResume({
@@ -183,17 +179,11 @@ export default function ResumeVoyage() {
         </div>
 
         <div className="groupe-boutons-actions groupe-boutons-actions--compact groupe-boutons-actions--resume">
-          <button type="button" className="bouton-primaire" onClick={passerAuPaiement} disabled={estVide}>
-            Passer au paiement
-          </button>
-          <button type="button" className="bouton-secondaire" onClick={telechargerResumePdf} disabled={estVide}>
+          <button type="button" className="bouton-primaire" onClick={telechargerResumePdf} disabled={estVide}>
             Télécharger le PDF
           </button>
         </div>
 
-        <p className="texte-aide-paiement">
-          Le bouton paiement ouvre une page prête à recevoir ton lien Stripe. Le téléchargement PDF génère un récapitulatif complet du voyage.
-        </p>
       </section>
     </main>
   );

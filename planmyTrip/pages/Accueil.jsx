@@ -58,7 +58,7 @@ export default function Accueil() {
     const villeTrouvee = trouverVilleParNom(nomVille);
 
     if (!villeTrouvee) {
-      definirMessageErreur("Cette destination n'est pas encore répertoriée dans notre collection exclusive.");
+      definirMessageErreur("Cette destination n'est pas encore répertoriée dans notre collection.");
       return;
     }
 
@@ -73,30 +73,30 @@ export default function Accueil() {
     <main className="page-accueil">
       <section className="hero-accueil">
         <div className="hero-accueil__texte">
-          <p className="sur-ligne">PlanMyTrip · L'art de s'évader</p>
+          <p className="sur-ligne">PlanMyTrip · L'expertise du voyage</p>
           <p className="hero-accueil__bonjour">Ravi de vous revoir, {utilisateurConnecte?.prenom || "voyageur"}</p>
-          <h1>Concevez votre voyage sur mesure avec une élégance absolue.</h1>
-          <p>Explorez des destinations d'exception, sélectionnez vos expériences et centralisez votre itinéraire en un seul lieu pour un séjour inoubliable.</p>
+          <h1>Partez à la découverte de destinations qui font rêver et composez le voyage qui vous ressemble vraiment.</h1>
+          <p>Explorez des destinations uniques et composez votre itinéraire idéal. De la sélection de votre résidence à vos expériences exclusives, nous organisons chaque détail pour un voyage inoubliable.</p>
 
           <div className="hero-accueil__actions">
-            <a className="bouton-primaire" href="#recherche-voyage">Explorer nos destinations</a>
-            <a className="bouton-secondaire" href="#historique-recherche">Vos dernières inspirations</a>
+            <a className="bouton-primaire" href="#recherche-voyage">Planifier un voyage</a>
+            <a className="bouton-secondaire" href="#historique-recherche">Vos inspirations récentes</a>
           </div>
 
           <div className="hero-accueil__statistiques">
-            <article><strong>Collections</strong><span>Curatées</span></article>
-            <article><strong>Privilège</strong><span>Accompagnement</span></article>
-            <article><strong>Sérénité</strong><span>100% Sécurisé</span></article>
+            <article><strong>Services</strong><span>Sur mesure</span></article>
+            <article><strong>Sécurisé</strong><span>Paiements SSL</span></article>
+            <article><strong>24/7</strong><span>Accompagnement</span></article>
           </div>
         </div>
 
         <div className="hero-accueil__visuel">
           <div className="hero-accueil__banniere">
-            <img src="/images/banniere.jpg" alt="Voyage de luxe et sérénité" />
+            <img src="/images/banniere.jpg" alt="Expérience de voyage premium" />
             <div className="hero-accueil__badge">Sélection Premium</div>
             <div className="hero-accueil__carte-info">
-              <strong>Une expertise dédiée à vos projets</strong>
-              <span>Une interface intuitive pour une planification sans compromis sur le style.</span>
+              <strong>Une interface pensée pour l'excellence</strong>
+              <span>Gestion intuitive de vos réservations, suivi budgétaire en temps réel et itinéraire centralisé.</span>
             </div>
           </div>
         </div>
@@ -105,31 +105,31 @@ export default function Accueil() {
       <section className="section-contenu section-contenu--compact" id="recherche-voyage">
         <form className="carte-recherche-principale carte-recherche-principale--horizontale" onSubmit={lancerRecherche}>
           <div className="bloc-recherche-titre">
-            <p className="sur-ligne">Planification</p>
-            <h2>Où commence votre prochaine histoire ?</h2>
+            <p className="sur-ligne">Conciergerie</p>
+            <h2>Où souhaitez-vous poser vos valises ?</h2>
           </div>
 
           <label className="champ-formulaire">
-            <span>Destination de rêve</span>
+            <span>Ville de destination</span>
             <input
               type="text"
               value={nomVille}
               onChange={(evenement) => definirNomVille(evenement.target.value)}
-              placeholder="Entrez une ville (ex: Matane, Rimouski...)"
+              placeholder="Ex : Rimouski, Matane, Paris..."
             />
           </label>
 
           <label className="champ-formulaire">
-            <span>Durée du séjour (nuits)</span>
+            <span>Durée (nuits)</span>
             <input type="number" min="1" value={nombreDeNuits} onChange={(evenement) => definirNombreDeNuits(evenement.target.value)} />
           </label>
 
           <label className="champ-formulaire">
-            <span>Nombre de voyageurs</span>
+            <span>Voyageurs</span>
             <input type="number" min="1" value={nombreDePersonnes} onChange={(evenement) => definirNombreDePersonnes(evenement.target.value)} />
           </label>
 
-          <button type="submit" className="bouton-primaire bouton-recherche-principale">Rechercher l'évasion</button>
+          <button type="submit" className="bouton-primaire bouton-recherche-principale">Rechercher</button>
           {messageErreur ? <p className="message-erreur message-erreur-recherche">{messageErreur}</p> : null}
         </form>
       </section>
@@ -138,15 +138,15 @@ export default function Accueil() {
         <div className="entete-section">
           <div>
             <p className="sur-ligne">Continuité</p>
-            <h2>Reprenez là où vous vous étiez arrêté</h2>
+            <h2>Reprenez vos projets en cours</h2>
           </div>
         </div>
 
         <div className="historique-recherche">
           {historiqueRecherche.length === 0 ? (
             <article className="carte-vide">
-              <h2>Votre carnet est encore vierge</h2>
-              <p>Vos projets de voyage s'afficheront ici dès votre première recherche.</p>
+              <h2>Aucun projet enregistré</h2>
+              <p>Votre historique de planification apparaîtra ici après votre première recherche.</p>
             </article>
           ) : (
             historiqueRecherche.map((recherche, index) => (
@@ -195,7 +195,7 @@ export default function Accueil() {
         <div className="entete-section">
           <div>
             <p className="sur-ligne">Moments d'exception</p>
-            <h2>Vivez des expériences uniques</h2>
+            <h2>Expériences à vivre</h2>
           </div>
         </div>
 
