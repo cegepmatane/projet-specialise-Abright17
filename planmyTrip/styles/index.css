@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+:root {
+  --couleur-fond: #f4ebdf;
+  --couleur-fond-secondaire: #fff8ef;
+  --couleur-surface: rgba(255, 248, 239, 0.7);
+  --couleur-surface-foncee: #0f2341;
+  --couleur-carte: rgba(255, 255, 255, 0.8);
+  --couleur-carte-foncee: rgba(15, 35, 65, 0.92);
+  --couleur-texte: #13233f;
+  --couleur-texte-secondaire: #6b7a92;
+  --couleur-texte-clair: rgba(255, 248, 239, 0.84);
+  --couleur-accent: #f18d54;
+  --couleur-accent-foncee: #dd7440;
+  --couleur-accent-secondaire: #ffc98f;
+  --couleur-bordure: rgba(19, 35, 63, 0.08);
+  --ombre-douce: 0 20px 60px rgba(14, 34, 64, 0.14);
+  --ombre-forte: 0 28px 80px rgba(9, 22, 44, 0.25);
+  --rayon-grand: 32px;
+  --rayon-moyen: 22px;
+  --largeur-page: 1220px;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--couleur-texte);
+  background:
+    radial-gradient(circle at top left, rgba(255, 201, 143, 0.45), transparent 24%),
+    radial-gradient(circle at top right, rgba(241, 141, 84, 0.18), transparent 28%),
+    linear-gradient(180deg, #fff8ef 0%, #f4ebdf 100%);
+}
+
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; min-height: 100%; }
+body { color: var(--couleur-texte); }
+a { color: inherit; text-decoration: none; }
+button, input, select { font: inherit; }
+img { display: block; width: 100%; object-fit: cover; }
+
+.application-planmytrip { min-height: 100vh; }
+.page-contenu, .page-accueil { width: min(calc(100% - 2rem), var(--largeur-page)); margin: 0 auto; padding: 1.2rem 0 5rem; }
+.section-contenu { margin-top: 2rem; }
+.section-contenu--compact { margin-top: 1.3rem; }
+.sur-ligne { margin: 0 0 0.45rem; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; font-weight: 700; color: var(--couleur-accent-foncee); }
+.texte-secondaire, .message-erreur, .champ-formulaire span, .page-details p, .carte-element-voyage__description, .carte-element-voyage__categorie, .carte-ville__contenu p, .carte-simple__contenu p, .entete-page-categorie p, .ligne-resume-voyage p, .resume-compact__etiquette, .resume-compact__elements, .navigation-principale__salutation { color: var(--couleur-texte-secondaire); }
+
+.navigation-principale { position: sticky; top: 0; z-index: 50; padding: 1rem 1rem 0; backdrop-filter: blur(22px); background: linear-gradient(180deg, rgba(255,248,239,0.92), rgba(255,248,239,0.72)); border-bottom: 1px solid rgba(19,35,63,0.06); }
+.navigation-principale__barre-superieure, .navigation-principale__barre-categories { width: min(calc(100% - 1rem), var(--largeur-page)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.navigation-principale__barre-superieure { padding-bottom: 0.8rem; }
+.navigation-principale__barre-categories { padding: 0.85rem 0 1rem; border-top: 1px solid rgba(19,35,63,0.06); flex-wrap: wrap; }
+.navigation-principale__gauche { display: flex; align-items: center; gap: 1rem; }
+.navigation-principale__marque { display: inline-flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.08rem; }
+.navigation-principale__marque-badge { width: 40px; height: 40px; border-radius: 14px; display: inline-grid; place-items: center; color: white; background: linear-gradient(135deg, var(--couleur-accent), #ffb071); box-shadow: 0 14px 32px rgba(241,141,84,0.28); }
+.navigation-principale__liens, .navigation-principale__categories { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.navigation-principale__liens a, .navigation-principale__categories a { padding: 0.72rem 1rem; border-radius: 999px; color: var(--couleur-texte-secondaire); }
+.navigation-principale__liens a.active, .navigation-principale__categories a.active { background: rgba(255,255,255,0.96); color: var(--couleur-texte); box-shadow: var(--ombre-douce); }
+.navigation-principale__destination { font-weight: 600; }
+
+.bouton-primaire, .bouton-secondaire, .bouton-fantome { display: inline-flex; align-items: center; justify-content: center; border: none; cursor: pointer; border-radius: 999px; padding: 0.95rem 1.45rem; transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease; }
+.bouton-primaire:hover, .bouton-secondaire:hover, .bouton-fantome:hover { transform: translateY(-1px); }
+.bouton-primaire { color: #fff; background: linear-gradient(135deg, var(--couleur-accent), var(--couleur-accent-foncee)); box-shadow: 0 18px 34px rgba(241,141,84,0.28); }
+.bouton-secondaire { background: rgba(255,255,255,0.86); color: var(--couleur-texte); border: 1px solid var(--couleur-bordure); }
+.bouton-fantome { background: transparent; color: var(--couleur-texte-secondaire); }
+.bouton-largeur-complete { width: 100%; }
+
+.page-login { min-height: 100vh; display: grid; grid-template-columns: 1.05fr 0.95fr; }
+.page-login__visuel, .page-login__formulaire { display: flex; align-items: center; justify-content: center; padding: 3rem; }
+.page-login__visuel { position: relative; overflow: hidden; background: linear-gradient(150deg, #0d1f3a 0%, #19365f 55%, #24486d 100%); color: #fffaf4; }
+.page-login__visuel::after { content: ""; position: absolute; inset: auto -20% -20% auto; width: 420px; height: 420px; background: radial-gradient(circle, rgba(255,201,143,0.35), transparent 60%); }
+.page-login__visuel > div, .page-login__visuel { flex-direction: column; }
+.page-login__visuel h1 { font-size: clamp(2.6rem, 4vw, 4.9rem); line-height: 1.03; margin: 0 0 1rem; max-width: 12ch; }
+.page-login__visuel p:last-child { max-width: 48ch; color: var(--couleur-texte-clair); }
+
+.carte-authentification, .carte-recherche-principale, .panneau-filtres, .carte-element-voyage, .carte-ville, .carte-simple, .bloc-resume-voyage, .encart-total-resume, .carte-vide, .page-details, .resume-compact, .bouton-wishlist-fixe, .historique-recherche, .grille-informations-contact article { background: var(--couleur-carte); border: 1px solid rgba(255,255,255,0.58); box-shadow: var(--ombre-douce); backdrop-filter: blur(16px); }
+.carte-authentification { width: min(100%, 470px); padding: 2rem; border-radius: var(--rayon-grand); }
+.champ-formulaire { display: grid; gap: 0.55rem; }
+.champ-formulaire input, .champ-formulaire select { width: 100%; border-radius: 16px; border: 1px solid rgba(19,35,63,0.08); background: rgba(255,255,255,0.92); padding: 0.95rem 1rem; color: var(--couleur-texte); }
+.message-erreur { font-weight: 600; }
+
+.hero-accueil { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2rem; align-items: center; padding: 2rem 0 1rem; }
+.hero-accueil__texte h1 { margin: 0; font-size: clamp(2.8rem, 5vw, 5rem); line-height: 1.02; max-width: 12ch; }
+.hero-accueil__texte > p:not(.sur-ligne) { max-width: 52ch; font-size: 1.05rem; color: var(--couleur-texte-secondaire); }
+.hero-accueil__actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 1.4rem; }
+.hero-accueil__statistiques { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.6rem; }
+.hero-accueil__statistiques article { min-width: 150px; padding: 1rem 1.15rem; border-radius: 20px; background: rgba(255,255,255,0.6); border: 1px solid rgba(19,35,63,0.06); }
+.hero-accueil__statistiques strong { display: block; font-size: 1.45rem; }
+.hero-accueil__visuel { display: flex; justify-content: flex-end; }
+.hero-accueil__banniere { position: relative; width: 100%; min-height: 560px; border-radius: 42px; overflow: hidden; background: linear-gradient(160deg, #122845 0%, #1b3b67 52%, #224b74 100%); box-shadow: var(--ombre-forte); }
+.hero-accueil__banniere img { height: 100%; opacity: 0.95; object-fit: cover; }
+.hero-accueil__badge { position: absolute; top: 24px; left: 24px; padding: 0.75rem 1rem; border-radius: 999px; color: white; background: rgba(255,255,255,0.14); backdrop-filter: blur(12px); }
+.hero-accueil__carte-info { position: absolute; right: 24px; bottom: 24px; max-width: 280px; padding: 1rem 1.1rem; border-radius: 24px; background: rgba(255,248,239,0.92); box-shadow: var(--ombre-douce); }
+.hero-accueil__carte-info strong { display: block; margin-bottom: 0.45rem; }
+
+.carte-recherche-principale { padding: 1.3rem; border-radius: 30px; }
+.carte-recherche-principale--horizontale { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr) auto; gap: 1rem; align-items: end; }
+.bloc-recherche-titre h2 { margin: 0; font-size: 1.35rem; }
+.bouton-recherche-principale { min-width: 170px; }
+
+.entete-section { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 1rem; }
+.entete-section h2, .entete-page-categorie h1 { margin: 0; font-size: clamp(1.9rem, 3vw, 2.9rem); }
+.entete-page-categorie { padding: 1.6rem 1.8rem; border-radius: 32px; background: linear-gradient(135deg, rgba(15,35,65,0.96), rgba(34,75,116,0.9)); color: white; box-shadow: var(--ombre-forte); }
+.entete-page-categorie p { color: rgba(255,248,239,0.8); }
+.entete-page-categorie .sur-ligne { color: var(--couleur-accent-secondaire); }
+
+.historique-recherche { display: flex; flex-wrap: wrap; gap: 0.8rem; border-radius: 28px; padding: 1rem; }
+.pastille-historique { border: 1px solid rgba(19,35,63,0.08); background: rgba(255,255,255,0.95); border-radius: 999px; padding: 0.85rem 1rem; cursor: pointer; }
+
+.grille-villes, .grille-cartes-simples, .grille-cartes-principales, .grille-informations-contact { display: grid; gap: 1.2rem; }
+.grille-villes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grille-cartes-simples { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grille-cartes-principales { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grille-informations-contact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.carte-ville, .carte-simple, .carte-element-voyage { overflow: hidden; border-radius: 28px; }
+.carte-ville img, .carte-simple img { height: 240px; }
+.carte-element-voyage__image { height: 220px; }
+.carte-ville__contenu, .carte-simple__contenu, .carte-element-voyage__contenu { padding: 1.15rem; }
+.carte-element-voyage__ligne { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.carte-element-voyage__categorie { margin: 0.3rem 0 0; font-weight: 600; }
+.carte-simple--texte { padding: 1.3rem; }
+
+.mise-en-page-liste { display: grid; grid-template-columns: 320px minmax(0, 1fr); gap: 1.2rem; margin-top: 1.4rem; }
+.panneau-filtres { align-self: start; position: sticky; top: 138px; padding: 1.2rem; border-radius: 28px; display: grid; gap: 1rem; }
+.page-details { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; border-radius: 32px; padding: 1rem; overflow: hidden; }
+.page-details__visuel img { border-radius: 24px; height: 100%; min-height: 460px; }
+.page-details__contenu { padding: 1rem; }
+.texte-introduction-details { font-size: 1.02rem; max-width: 56ch; }
+.boite-informations-details { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.9rem; margin: 1.3rem 0; }
+.boite-informations-details article { padding: 1rem; border-radius: 20px; background: rgba(255,255,255,0.72); }
+.boite-informations-details span { display: block; font-size: 0.84rem; color: var(--couleur-texte-secondaire); margin-bottom: 0.35rem; }
+.groupe-boutons-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.groupe-boutons-actions--compact { margin-top: 1rem; }
+.carte-interactive { height: 420px; border-radius: 28px; overflow: hidden; }
+.carte-interactive .leaflet-container { height: 100%; width: 100%; }
+.carte-interactive__indisponible { padding: 2rem; border-radius: 28px; background: rgba(255,255,255,0.8); }
+
+.bloc-resume-voyage { padding: 1.2rem; border-radius: 30px; margin-top: 1.4rem; display: grid; gap: 0.8rem; }
+.ligne-resume-voyage { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 1rem; border-radius: 22px; background: rgba(255,255,255,0.62); }
+.ligne-resume-voyage h3 { margin: 0 0 0.3rem; }
+.ligne-resume-voyage__droite { display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; }
+.encart-total-resume { margin-top: 1.2rem; padding: 1.3rem 1.5rem; border-radius: 28px; display: flex; justify-content: space-between; align-items: center; }
+.encart-total-resume strong { font-size: 1.7rem; }
+.carte-vide { padding: 1.5rem; border-radius: 28px; }
+.page-introuvable { text-align: center; padding-top: 5rem; }
+.resume-compact, .bouton-wishlist-fixe { position: fixed; right: 20px; z-index: 45; border-radius: 22px; padding: 0.95rem 1rem; }
+.resume-compact { top: 132px; display: grid; gap: 0.1rem; text-align: left; }
+.bouton-wishlist-fixe { top: 228px; }
+
+@media (max-width: 1100px) {
+  .hero-accueil, .page-login, .page-details, .mise-en-page-liste, .carte-recherche-principale--horizontale, .grille-villes, .grille-cartes-simples, .grille-cartes-principales, .grille-informations-contact { grid-template-columns: 1fr; }
+  .hero-accueil__visuel { order: -1; }
+  .panneau-filtres { position: static; }
+  .resume-compact, .bouton-wishlist-fixe { position: static; display: inline-flex; margin: 0.6rem 0 0 1rem; }
+  .navigation-principale__barre-superieure, .navigation-principale__barre-categories { align-items: flex-start; flex-direction: column; }
+}
+
+@media (max-width: 720px) {
+  .page-contenu, .page-accueil { width: min(calc(100% - 1rem), var(--largeur-page)); }
+  .hero-accueil__texte h1 { max-width: none; }
+  .hero-accueil__banniere { min-height: 380px; }
+  .boite-informations-details { grid-template-columns: 1fr; }
+  .navigation-principale { padding-top: 0.75rem; }
+}
+
+
+.message-succes { color: #1d7a46; background: rgba(227, 248, 235, 0.95); border-radius: 14px; padding: 0.85rem 1rem; }
+.message-erreur-recherche { grid-column: 1 / -1; margin: 0; }
+.bouton-retirer { color: #8f2f24; background: #ffeae5; box-shadow: 0 14px 28px rgba(219, 108, 87, 0.18); }
+.bouton-wishlist-actif { color: white; background: linear-gradient(135deg, #f06d6d, #db4d7c); box-shadow: 0 16px 30px rgba(219, 77, 124, 0.22); }
+.encart-total-resume--colonne { display: grid; gap: 0.85rem; }
+.ligne-total { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.ligne-total-final { padding-top: 0.9rem; border-top: 1px solid rgba(19,35,63,0.08); }
+.groupe-boutons-actions--resume { margin-top: 0.45rem; }
+.texte-aide-paiement { color: var(--couleur-texte-secondaire); margin: 0; font-size: 0.95rem; }
+.texte-aide-centre { text-align: center; margin-top: 0.9rem; }
+.page-paiement__carte { margin-top: 1.4rem; }
+
+.hero-accueil__bonjour { margin: 0 0 0.65rem; font-weight: 600; color: var(--couleur-accent-foncee); }
+.carte-interactive__bloc { display: grid; gap: 0.9rem; }
+.bloc-proximite-carte { padding: 1rem 1.1rem; border-radius: 20px; background: rgba(255,255,255,0.78); border: 1px solid rgba(19,35,63,0.08); }
+.badge-distance { display: inline-flex; align-items: center; border-radius: 999px; padding: 0.5rem 0.8rem; font-size: 0.92rem; font-weight: 700; }
+.badge-distance--proche { background: #e8f7ee; color: #1f7a46; }
+.badge-distance--moyen { background: #fff2e6; color: #b86818; }
+.badge-distance--loin { background: #fdecec; color: #b54736; }
